@@ -16,9 +16,5 @@
 !/log/.keep
 /tmp
 
-# Application secrets and DB credentials
-/config/secrets.yml
-/config/database.yml
-
 # Site-specific deployment config
 /config/deploy
