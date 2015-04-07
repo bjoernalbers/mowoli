@@ -21,17 +21,17 @@ Then create a worklist entry by HTTP POST, i.e. from your console:
 
 ```console
 /usr/bin/curl \
-  -F 'entry[patient_id]="674563"' \
-  -F 'entry[patients_name]="Hasselhoff^David"' \
-  -F 'entry[patients_birth_date]="1952-07-17"' \
-  -F 'entry[patients_sex]="M"' \
-  -F 'entry[referring_physicians_name]="House^Gregory^^Dr."' \
-  -F 'entry[requesting_physicians_name]="Volakis^Amber^^Dr."' \
-  -F 'entry[requested_procedure_description]="knee"' \
-  -F 'entry[scheduled_station_ae_title]="AGFA"' \
-  -F 'entry[modality]="MR"' \
-  -F 'entry[accession_number]="9837613118"' \
-  -F 'entry[study_instance_uid]="1.2.3.4.567890"' \
+  -F 'entry[patient_id]=674563' \
+  -F 'entry[patients_name]=Hasselhoff^David' \
+  -F 'entry[patients_birth_date]=1952-07-17' \
+  -F 'entry[patients_sex]=M' \
+  -F 'entry[referring_physicians_name]=House^Gregory^^Dr.' \
+  -F 'entry[requesting_physicians_name]=Volakis^Amber^^Dr.' \
+  -F 'entry[requested_procedure_description]=knee' \
+  -F 'entry[scheduled_station_ae_title]=AGFA' \
+  -F 'entry[modality]=MR' \
+  -F 'entry[accession_number]=9837613118' \
+  -F 'entry[study_instance_uid]=1.2.3.4.567890' \
   http://localhost:5000/entries
 ```
 
