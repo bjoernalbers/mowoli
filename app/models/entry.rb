@@ -1,8 +1,18 @@
 class Entry < ActiveRecord::Base
+  PATIENTS_SEX_CODES = [
+    'F', # Female
+    'M', # Male
+    'O'  # Other
+  ]
 
   # DICOM Value Representation: CS (Code String)
-  validates :patients_sex, :modality,
+  validates :modality,
     presence: true, length: { maximum: 16 }, format: { with: /\A[A-Z\d\_]+\Z/ }
+
+  # DICOM Value Representation: CS (Code String)
+  validates :patients_sex,
+    presence: true,
+    inclusion: { in: PATIENTS_SEX_CODES }
 
   # DICOM Value Representation: SH (Short String)
   validates :accession_number,
@@ -47,6 +57,5 @@ class Entry < ActiveRecord::Base
 
   def strip_whitespaces
     self.accession_number = accession_number.strip if accession_number.present?
-    self.patients_sex = patients_sex.strip if patients_sex.present?
   end
 end

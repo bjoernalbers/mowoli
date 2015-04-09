@@ -114,24 +114,22 @@ RSpec.describe Entry, type: :model do
       expect{ entry.save(validate: false) }.to raise_error
     end
 
-    it 'contains max. 16 characters' do
-      entry.patients_sex = '0' * 17
-      expect(entry).not_to be_valid
-      entry.patients_sex = '0' * 16
-      expect(entry).to be_valid
+    {
+      'F' => 'Female',
+      'M' => 'Male',
+      'O' => 'Other'
+    }.each do |code,description|
+      it "can be '#{code}' (#{description})" do
+        entry.patients_sex = code
+        expect(entry).to be_valid
+      end
     end
 
-    it 'ignores leading or trailing spaces' do
-      entry.patients_sex = "\t F\t  "
-      entry.valid? # NOTE: Runs callback
-      expect(entry.patients_sex).to eq 'F'
-    end
-
-    it 'accepts only uppercase letters, digits and underscores' do
-      ['a', 'z', ',', '.', "\t", ' ', '-'].each do |char|
-        entry.patients_sex = char
+    it 'can not include other codes' do
+      ['f', 'm', 'o', 'a', 'z', ',', '.', "\t", ' ', '-', 0, 9].each do |code|
+        entry.patients_sex = code
         expect(entry).not_to be_valid
-        expect(entry.errors[:patients_sex]).not_to be_empty
+        expect(entry.errors[:patients_sex]).to be_present
       end
     end
   end
