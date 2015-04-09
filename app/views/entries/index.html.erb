@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Entries</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Accession number</th>
+      <th>Referring physicians name</th>
+      <th>Patients name</th>
+      <th>Patient</th>
+      <th>Patients birth date</th>
+      <th>Patients sex</th>
+      <th>Study instance uid</th>
+      <th>Requesting physicians name</th>
+      <th>Requested procedure description</th>
+      <th>Modality</th>
+      <th>Scheduled station ae title</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @entries.each do |entry| %>
+      <tr>
+        <td><%= entry.accession_number %></td>
+        <td><%= entry.referring_physicians_name %></td>
+        <td><%= entry.patients_name %></td>
+        <td><%= entry.patient_id %></td>
+        <td><%= entry.patients_birth_date %></td>
+        <td><%= entry.patients_sex %></td>
+        <td><%= entry.study_instance_uid %></td>
+        <td><%= entry.requesting_physicians_name %></td>
+        <td><%= entry.requested_procedure_description %></td>
+        <td><%= entry.modality %></td>
+        <td><%= entry.scheduled_station_ae_title %></td>
+        <td><%# link_to 'Show', entry %></td>
+        <td><%# link_to 'Edit', edit_entry_path(entry) %></td>
+        <td><%# link_to 'Destroy', entry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%# link_to 'New Entry', new_entry_path %>
