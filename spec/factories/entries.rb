@@ -9,7 +9,6 @@ FactoryGirl.define do
     modality { %w(MR CT CR US MG).sample }
     requested_procedure_description { %w(head knee).sample }
     scheduled_station_ae_title { %w(PHILIPS SIEMENS AGFA).sample }
-    study_instance_uid { '1.2.3.4.567890' }
     patients_birth_date { Faker::Date.between(90.years.ago, Date.today) }
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150213080943) do
+ActiveRecord::Schema.define(version: 20150410072948) do
 
   create_table "entries", force: :cascade do |t|
     t.datetime "created_at",                      null: false
@@ -28,5 +28,7 @@ ActiveRecord::Schema.define(version: 20150213080943) do
     t.string   "study_instance_uid",              null: false
     t.date     "patients_birth_date",             null: false
   end
+
+  add_index "entries", ["study_instance_uid"], name: "index_entries_on_study_instance_uid", unique: true
 
 end

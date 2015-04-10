@@ -31,9 +31,27 @@ Then create a worklist entry by HTTP POST, i.e. from your console:
   -F 'entry[scheduled_station_ae_title]=AGFA' \
   -F 'entry[modality]=MR' \
   -F 'entry[accession_number]=9837613118' \
-  -F 'entry[study_instance_uid]=1.2.3.4.567890' \
   http://localhost:5000/entries
 ```
+
+## Worklist Attributes
+
+### Study Instance UID
+
+Study Instance UIDs are generated automatically.
+They constist of a fixed *org root* and a random integer UUID in order to make
+them practically collision-free:
+
+```
+<org root>.<random integer UUID>
+```
+
+The *org root* is "1.2.826.0.1.3680043.9.5265."
+(Thanks to
+[Medical Connections Ltd](https://www.medicalconnections.co.uk)
+for their
+[FREE UID](https://www.medicalconnections.co.uk/Free_UID)
+service!).
 
 
 ## Copyright

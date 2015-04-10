@@ -135,26 +135,66 @@ RSpec.describe Entry, type: :model do
   end
 
   describe '#study_instance_uid' do
-    it 'is required' do
-      entry.study_instance_uid = nil
-      expect(entry).not_to be_valid
-      expect{ entry.save(validate: false) }.to raise_error
+    let(:generated_uid) { '1.2.3.42' }
+
+    before do
+      allow(UniqueIdentifier).to receive(:new).
+        and_return(double(generate: generated_uid))
     end
 
-    it 'contains max. 64 characters' do
-      entry.study_instance_uid = '0' * 65
-      expect(entry).not_to be_valid
-      entry.study_instance_uid = '0' * 64
+    context 'when not set' do
+      let(:entry) { FactoryGirl.build(:entry, study_instance_uid: nil) }
+
+      it 'assigns generated UID before validation' do
+        expect(entry.study_instance_uid).to be nil
+        entry.valid?
+        expect(entry.study_instance_uid).to eq generated_uid
+      end
+    end
+
+    context 'when set' do
+      let(:custom_uid) { '1.23.567' }
+      let(:entry) { FactoryGirl.build(:entry, study_instance_uid: custom_uid) }
+
+      it 'does not assign generated UID before validation' do
+        expect(entry.study_instance_uid).to eq custom_uid
+        entry.valid?
+        expect(entry.study_instance_uid).to eq custom_uid
+      end
+    end
+
+    it 'validates uniqueness' do
+      other = FactoryGirl.create(:entry, study_instance_uid: generated_uid)
+      entry = FactoryGirl.build(:entry, study_instance_uid: generated_uid)
+      expect(entry).to be_invalid
+      expect(entry.errors[:study_instance_uid]).to be_present
+      expect{ entry.save!(validate: false) }.to raise_error
+    end
+
+    it 'validates length' do
+      valid_uid = '1.2.' + '3' * 60
+      entry = FactoryGirl.build(:entry, study_instance_uid: valid_uid)
+      expect(entry.study_instance_uid.size).to eq 64
       expect(entry).to be_valid
+
+      too_long_uid = '1.2.' + '3' * 61
+      entry = FactoryGirl.build(:entry, study_instance_uid: too_long_uid)
+      expect(entry.study_instance_uid.size).to eq 65
+      expect(entry).to be_invalid
+      expect(entry.errors[:study_instance_uid]).to be_present
     end
 
-    it 'must contain only digits and dots' do
+    it 'validates format' do
       uid = '1.2.3.45.67890'
       entry.study_instance_uid = uid
       expect(entry).to be_valid
-      %w(A a , _).each do |char|
-        entry.study_instance_uid = uid + char
-        expect(entry).not_to be_valid
+      [
+        'A', 'a', # No letters
+        '_',      # No special characters
+        #'.0123'   # No segment with leading zero #TODO Test this too!
+      ].each do |invalid_suffix|
+        entry.study_instance_uid = uid + invalid_suffix
+        expect(entry).to be_invalid
       end
     end
   end

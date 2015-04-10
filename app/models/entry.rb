@@ -36,10 +36,13 @@ class Entry < ActiveRecord::Base
 
   # DICOM Value Representation: UI (Unique Identifier, UID)
   validates :study_instance_uid,
-    presence: true, length: { maximum: 64 },
+    uniqueness: true,
+    length: { maximum: 64 },
     format: { with: /\A[\d\.]+\Z/ }
 
   before_validation :strip_whitespaces
+
+  before_validation :set_study_instance_uid
 
   def patients_name_attributes=(attr)
     self.patients_name = PersonName.new(attr).to_s
@@ -56,6 +59,12 @@ class Entry < ActiveRecord::Base
   private
 
   def strip_whitespaces
-    self.accession_number = accession_number.strip if accession_number.present?
+    self.accession_number =
+      accession_number.strip if accession_number.present?
+  end
+
+  def set_study_instance_uid
+    self.study_instance_uid =
+      UniqueIdentifier.new.generate unless study_instance_uid
   end
 end

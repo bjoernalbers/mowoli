@@ -30,7 +30,6 @@ class EntriesController < ApplicationController
              :patient_id,
              :patients_birth_date,
              :patients_sex,
-             :study_instance_uid,
              :requesting_physicians_name,
              :requested_procedure_description,
              :modality,
