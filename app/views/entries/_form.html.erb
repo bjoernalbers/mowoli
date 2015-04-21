@@ -1,0 +1,61 @@
+<%= form_for(@entry) do |f| %>
+  <% if @entry.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@entry.errors.count, "error") %> prohibited this entry from being saved:</h2>
+
+      <ul>
+      <% @entry.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :accession_number %><br>
+    <%= f.text_field :accession_number %>
+  </div>
+  <div class="field">
+    <%= f.label :referring_physicians_name %><br>
+    <%= f.text_field :referring_physicians_name %>
+  </div>
+  <div class="field">
+    <%= f.label :patients_name %><br>
+    <%= f.text_field :patients_name %>
+  </div>
+  <div class="field">
+    <%= f.label :patient_id %><br>
+    <%= f.text_field :patient_id %>
+  </div>
+  <div class="field">
+    <%= f.label :patients_birth_date %><br>
+    <%= f.date_select :patients_birth_date %>
+  </div>
+  <div class="field">
+    <%= f.label :patients_sex %><br>
+    <%= f.text_field :patients_sex %>
+  </div>
+  <div class="field">
+    <%= f.label :study_instance_uid %><br>
+    <%= f.text_field :study_instance_uid %>
+  </div>
+  <div class="field">
+    <%= f.label :requesting_physicians_name %><br>
+    <%= f.text_field :requesting_physicians_name %>
+  </div>
+  <div class="field">
+    <%= f.label :requested_procedure_description %><br>
+    <%= f.text_field :requested_procedure_description %>
+  </div>
+  <div class="field">
+    <%= f.label :modality %><br>
+    <%= f.text_field :modality %>
+  </div>
+  <div class="field">
+    <%= f.label :scheduled_station_ae_title %><br>
+    <%= f.text_field :scheduled_station_ae_title %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

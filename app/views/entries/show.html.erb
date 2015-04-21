@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Accession number:</strong>
+  <%= @entry.accession_number %>
+</p>
+
+<p>
+  <strong>Referring physicians name:</strong>
+  <%= @entry.referring_physicians_name %>
+</p>
+
+<p>
+  <strong>Patients name:</strong>
+  <%= @entry.patients_name %>
+</p>
+
+<p>
+  <strong>Patient:</strong>
+  <%= @entry.patient_id %>
+</p>
+
+<p>
+  <strong>Patients birth date:</strong>
+  <%= @entry.patients_birth_date %>
+</p>
+
+<p>
+  <strong>Patients sex:</strong>
+  <%= @entry.patients_sex %>
+</p>
+
+<p>
+  <strong>Study instance uid:</strong>
+  <%= @entry.study_instance_uid %>
+</p>
+
+<p>
+  <strong>Requesting physicians name:</strong>
+  <%= @entry.requesting_physicians_name %>
+</p>
+
+<p>
+  <strong>Requested procedure description:</strong>
+  <%= @entry.requested_procedure_description %>
+</p>
+
+<p>
+  <strong>Modality:</strong>
+  <%= @entry.modality %>
+</p>
+
+<p>
+  <strong>Scheduled station ae title:</strong>
+  <%= @entry.scheduled_station_ae_title %>
+</p>
+
+<%= link_to 'Edit', edit_entry_path(@entry) %> |
+<%= link_to 'Back', entries_path %>

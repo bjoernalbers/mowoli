@@ -10,13 +10,38 @@ describe 'POST /entries' do
     }
   end
 
-  context 'with valid params' do
+  def do_post
+    post '/entries', params, headers
+  end
+
+  context 'with valid params send twice' do
+    let(:station) { FactoryGirl.create(:station) }
     let(:params) do
-      { entry: FactoryGirl.attributes_for(:entry) }
+      p = { entry: FactoryGirl.attributes_for(:entry) }
+      p[:entry][:station_name] = station.name
+      p
     end
 
-    def do_post
-      post '/entries', params, headers
+    before do
+      do_post
+    end
+
+    it 'returns HTTP status 201' do
+      do_post
+      expect( response.status ).to eq 201
+    end
+
+    it 'does not create new entry' do
+      expect{ do_post }.to change(Entry, :count).by(0)
+    end
+  end
+
+  context 'with valid params' do
+    let(:station) { FactoryGirl.create(:station) }
+    let(:params) do
+      p = { entry: FactoryGirl.attributes_for(:entry) }
+      p[:entry][:station_name] = station.name
+      p
     end
 
     it 'returns HTTP status 201' do
@@ -35,9 +60,24 @@ describe 'POST /entries' do
   end
 
   context 'with invalid params' do
-    it 'returns HTTP status 422'
-    it 'returns plain text'
-    it 'does not save entry'
+    let(:params) do
+      { entry: FactoryGirl.attributes_for(:entry) }
+    end
+
+    it 'returns HTTP status 422' do
+      do_post
+      expect( response.status ).to eq 422
+    end
+
+    it 'returns plain text' do
+      do_post
+      expect( response.content_type ).to be_text
+    end
+
+    it 'does not create new entry' do
+      expect{ do_post }.to change(Entry, :count).by(0)
+    end
+
     it 'returns validation errors'
   end
 end

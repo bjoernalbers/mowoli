@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150410072948) do
+ActiveRecord::Schema.define(version: 20150421083013) do
 
   create_table "entries", force: :cascade do |t|
     t.datetime "created_at",                      null: false
@@ -22,13 +22,24 @@ ActiveRecord::Schema.define(version: 20150410072948) do
     t.string   "patients_name",                   null: false
     t.string   "referring_physicians_name",       null: false
     t.string   "requesting_physicians_name",      null: false
-    t.string   "modality",                        null: false
     t.string   "requested_procedure_description", null: false
-    t.string   "scheduled_station_ae_title",      null: false
     t.string   "study_instance_uid",              null: false
     t.date     "patients_birth_date",             null: false
+    t.integer  "station_id",                      null: false
   end
 
+  add_index "entries", ["accession_number"], name: "index_entries_on_accession_number", unique: true
+  add_index "entries", ["station_id"], name: "index_entries_on_station_id"
   add_index "entries", ["study_instance_uid"], name: "index_entries_on_study_instance_uid", unique: true
+
+  create_table "stations", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.string   "modality",   null: false
+    t.string   "aetitle",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "stations", ["name"], name: "index_stations_on_name", unique: true
 
 end

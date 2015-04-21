@@ -17,7 +17,9 @@ bin/rake db:create db:schema:load
 foreman start
 ```
 
-Then create a worklist entry by HTTP POST, i.e. from your console:
+Create some stations with the [web UI](http://localhost:5000/stations)
+and then you're ready to create some worklist entries by HTTP POST requests,
+i.e. from your console:
 
 ```console
 /usr/bin/curl \
@@ -27,12 +29,13 @@ Then create a worklist entry by HTTP POST, i.e. from your console:
   -F 'entry[patients_sex]=M' \
   -F 'entry[referring_physicians_name]=House^Gregory^^Dr.' \
   -F 'entry[requesting_physicians_name]=Volakis^Amber^^Dr.' \
-  -F 'entry[requested_procedure_description]=knee' \
-  -F 'entry[scheduled_station_ae_title]=AGFA' \
-  -F 'entry[modality]=MR' \
+  -F 'entry[requested_procedure_description]=brain' \
+  -F 'entry[station_name]=PHILIPS_MR' \
   -F 'entry[accession_number]=9837613118' \
   http://localhost:5000/entries
 ```
+
+Entries are visible over the [web UI](http://localhost:5000/entries) as well.
 
 ## Worklist Attributes
 

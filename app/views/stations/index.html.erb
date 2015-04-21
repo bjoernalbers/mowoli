@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Stations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Modality</th>
+      <th>Aetitle</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @stations.each do |station| %>
+      <tr>
+        <td><%= station.name %></td>
+        <td><%= station.modality %></td>
+        <td><%= station.aetitle %></td>
+        <td><%= link_to 'Show', station %></td>
+        <td><%= link_to 'Edit', edit_station_path(station) %></td>
+        <td><%= link_to 'Destroy', station, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Station', new_station_path %>

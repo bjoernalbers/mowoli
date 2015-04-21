@@ -7,14 +7,46 @@ RSpec.describe Entry, type: :model do
     expect(entry).to be_valid
   end
 
-  describe '#accession_number' do
+  describe '#station' do
     it 'is required' do
+      entry = build(:entry, station: nil)
+      expect(entry).to be_invalid
+      expect(entry.errors[:station]).to be_present
+      expect{ entry.save(validate: false) }.to raise_error
+    end
+  end
+
+  describe '#station_name' do
+    let(:station) { create(:station) }
+    let(:entry) { build(:entry, station: nil) }
+
+    before do
+      allow(Station).to receive(:find_by).and_return(station)
+      entry.station_name = 'Chunky Bacon'
+      entry.valid?
+    end
+
+    it 'caches station name' do
+      expect(entry.station_name).to eq 'Chunky Bacon'
+    end
+
+    it 'assigns station to entry' do
+      expect(entry.station).to eq station
+    end
+
+    it 'finds station by name' do
+      expect(Station).to have_received(:find_by).with(name: 'Chunky Bacon')
+    end
+  end
+
+  describe '#accession_number' do
+    it 'must be present' do
       entry.accession_number = nil
       expect(entry).not_to be_valid
       expect{ entry.save(validate: false) }.to raise_error
     end
 
-    it 'contains max. 16 characters' do
+    it 'must contains 16 characters max' do
       entry.accession_number = '0' * 17
       expect(entry).not_to be_valid
       entry.accession_number = '0' * 16
@@ -25,6 +57,14 @@ RSpec.describe Entry, type: :model do
       entry.accession_number = "\t 42\t  "
       entry.valid? # NOTE: Runs callback
       expect(entry.accession_number).to eq '42'
+    end
+
+    it 'must be unique' do
+      other = create(:entry)
+      entry = build(:entry, accession_number: other.accession_number)
+      expect(entry).to be_invalid
+      expect(entry.errors[:accession_number]).to be_present
+      expect{ entry.save!(validate: false) }.to raise_error
     end
 
     #it 'shall have no control characters except ESC'
@@ -232,18 +272,24 @@ RSpec.describe Entry, type: :model do
   end
 
   describe '#modality' do
-    it 'is required' do
-      entry.modality = nil
-      expect(entry).not_to be_valid
-      expect{ entry.save(validate: false) }.to raise_error
+    it 'returns modality from station' do
+      entry = build(:entry, station: nil)
+      expect(entry.modality).to be nil
+
+      station = create(:station, modality: 'DX')
+      entry = build(:entry, station: station)
+      expect(entry.modality).to eq 'DX'
     end
   end
 
   describe '#scheduled_station_ae_title' do
-    it 'is required' do
-      entry.scheduled_station_ae_title = nil
-      expect(entry).not_to be_valid
-      expect{ entry.save(validate: false) }.to raise_error
+    it 'returns aetitle from station' do
+      entry = build(:entry, station: nil)
+      expect(entry.scheduled_station_ae_title).to be nil
+
+      station = create(:station, aetitle: 'CHUNKY_BACON')
+      entry = build(:entry, station: station)
+      expect(entry.scheduled_station_ae_title).to eq 'CHUNKY_BACON'
     end
   end
 

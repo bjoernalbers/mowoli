@@ -5,9 +5,12 @@ class Entry < ActiveRecord::Base
     'O'  # Other
   ]
 
-  # DICOM Value Representation: CS (Code String)
-  validates :modality,
-    presence: true, length: { maximum: 16 }, format: { with: /\A[A-Z\d\_]+\Z/ }
+  belongs_to :station
+
+  attr_accessor :station_name
+
+  validates :station,
+    presence: true
 
   # DICOM Value Representation: CS (Code String)
   validates :patients_sex,
@@ -16,7 +19,9 @@ class Entry < ActiveRecord::Base
 
   # DICOM Value Representation: SH (Short String)
   validates :accession_number,
-    presence: true, length: { maximum: 16 }
+    presence: true,
+    uniqueness: true,
+    length: { maximum: 16 }
 
   # DICOM Value Representation: LO (Long String)
   validates :patient_id, :requested_procedure_description,
@@ -30,10 +35,6 @@ class Entry < ActiveRecord::Base
   validates :patients_birth_date,
     presence: true
 
-  # DICOM Value Representation: AE (Application Entity)
-  validates :scheduled_station_ae_title,
-    presence: true, length: { maximum: 16 }
-
   # DICOM Value Representation: UI (Unique Identifier, UID)
   validates :study_instance_uid,
     uniqueness: true,
@@ -43,6 +44,16 @@ class Entry < ActiveRecord::Base
   before_validation :strip_whitespaces
 
   before_validation :set_study_instance_uid
+
+  before_validation :set_station
+
+  def modality
+    station.modality if station
+  end
+
+  def scheduled_station_ae_title
+    station.aetitle if station
+  end
 
   def patients_name_attributes=(attr)
     self.patients_name = PersonName.new(attr).to_s
@@ -66,5 +77,10 @@ class Entry < ActiveRecord::Base
   def set_study_instance_uid
     self.study_instance_uid =
       UniqueIdentifier.new.generate unless study_instance_uid
+  end
+
+  def set_station
+    self.station =
+      Station.find_by(name: @station_name) if @station_name.present?
   end
 end

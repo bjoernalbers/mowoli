@@ -6,7 +6,10 @@ class EntriesController < ApplicationController
   end
 
   def create
-    @entry = Entry.new(entry_params)
+    @entry =
+      Entry.find_by(accession_number: entry_params[:accession_number]) ||
+      Entry.new(entry_params)
+
     if @entry.save
       msg = "Entry successfully created:\n\n"
       msg << @entry.attributes.map { |k,v| "#{k}: #{v}" }.join("\n")
@@ -32,7 +35,6 @@ class EntriesController < ApplicationController
              :patients_sex,
              :requesting_physicians_name,
              :requested_procedure_description,
-             :modality,
-             :scheduled_station_ae_title)
+             :station_name)
   end
 end
