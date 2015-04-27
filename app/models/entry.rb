@@ -47,6 +47,9 @@ class Entry < ActiveRecord::Base
 
   before_validation :set_station
 
+  after_create :create_worklist_file
+  after_destroy :delete_worklist_file
+
   def modality
     station.modality if station
   end
@@ -82,5 +85,13 @@ class Entry < ActiveRecord::Base
   def set_station
     self.station =
       Station.find_by(name: @station_name) if @station_name.present?
+  end
+
+  def create_worklist_file
+    WorklistFile.new(self).create
+  end
+
+  def delete_worklist_file
+    WorklistFile.new(self).delete
   end
 end

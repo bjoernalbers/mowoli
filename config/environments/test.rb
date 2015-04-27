@@ -39,4 +39,7 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  # Here we're storing our worklist (XML) files for dcm4che's dcmof.
+  config.worklist_dir = Dir.mktmpdir
 end

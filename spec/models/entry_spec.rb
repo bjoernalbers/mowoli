@@ -7,6 +7,37 @@ RSpec.describe Entry, type: :model do
     expect(entry).to be_valid
   end
 
+  context 'on create' do
+    it 'creates worklist file' do
+      worklist_file = double('worklist_file')
+      allow(WorklistFile).to receive(:new).and_return(worklist_file)
+      allow(worklist_file).to receive(:create)
+
+      entry = FactoryGirl.create(:entry)
+
+      expect(WorklistFile).to have_received(:new).with(entry)
+      expect(worklist_file).to have_received(:create)
+    end
+  end
+
+  context 'on destroy' do
+    it 'creates worklist file' do
+      worklist_file = double('worklist_file')
+      allow(WorklistFile).to receive(:new).and_return(worklist_file)
+      allow(worklist_file).to receive(:create)
+      allow(worklist_file).to receive(:delete)
+
+      entry = FactoryGirl.create(:entry)
+
+      expect(WorklistFile).to have_received(:new).with(entry)
+      expect(worklist_file).to have_received(:create)
+
+      entry.destroy
+
+      expect(worklist_file).to have_received(:delete)
+    end
+  end
+
   describe '#station' do
     it 'is required' do
       entry = build(:entry, station: nil)

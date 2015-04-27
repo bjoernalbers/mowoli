@@ -18,3 +18,9 @@
 
 # Site-specific deployment config
 /config/deploy
+
+# Custom application config (foreman)
+/.env
+
+# Default directory for worklist files.
+/worklist

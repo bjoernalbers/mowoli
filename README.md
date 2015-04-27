@@ -5,6 +5,11 @@
 
 ## Quickstart
 
+- Install DCM4CHE 2
+
+- Download and unpack the
+  [latest version of *dcm4che2*](http://sourceforge.net/projects/dcm4che/files/dcm4che2/)
+  into */usr/local* and create a symlink (i.e. `cd /usr/local && ln -s dcm4che-2.0.28 dcm4che`)
 - Install XCode along with Command Line Developer Tools
 - Install [foreman](https://github.com/ddollar/foreman)
 - Install Bundler with `sudo gem install bundler`

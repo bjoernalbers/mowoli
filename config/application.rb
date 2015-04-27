@@ -22,5 +22,8 @@ module Mowoli
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    # Here we're storing our worklist (XML) files for dcm4che's dcmof.
+    config.worklist_dir = ENV['MWL_DIR'] || File.join(Rails.root, 'worklist')
   end
 end
