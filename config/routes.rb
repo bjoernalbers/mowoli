@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :stations
 
-  root 'entries#index'
+  root 'orders#index'
 
-  resource :entries, only: [:create]
+  resource :orders, only: [:create]
 end

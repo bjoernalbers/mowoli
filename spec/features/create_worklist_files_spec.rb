@@ -2,7 +2,7 @@ require 'rails_helper'
 
 # In order ship the worklist via dcm4che's dcmof
 # As a user
-# I want to serialize my entries as worklist files
+# I want to serialize my orders as worklist files
 
 
 feature 'Create worklist files' do
@@ -10,18 +10,18 @@ feature 'Create worklist files' do
     Dir.glob("#{Rails.configuration.worklist_dir}/*.xml")
   end
 
-  scenario 'when entry created' do
+  scenario 'when order created' do
     expect(worklist_files).to be_empty
 
-    entry = FactoryGirl.create(:entry)
+    order = FactoryGirl.create(:order)
     
     expect(worklist_files).to be_present
 
     worklist_file = worklist_files.first
     content = File.read(worklist_file)
-    expect(content).to include entry.accession_number
+    expect(content).to include order.accession_number
 
-    entry.destroy
+    order.destroy
 
     expect(worklist_files).to be_empty
   end

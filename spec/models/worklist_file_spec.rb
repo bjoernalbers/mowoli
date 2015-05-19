@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 describe WorklistFile do
-  let(:entry) { double('entry') }
-  let(:worklist_file) { WorklistFile.new(entry) }
+  let(:order) { double('order') }
+  let(:worklist_file) { WorklistFile.new(order) }
 
   before do
-    allow(entry).to receive(:study_instance_uid) { '1.23.456' }
+    allow(order).to receive(:study_instance_uid) { '1.23.456' }
   end
 
   describe '#create' do
@@ -37,21 +37,21 @@ describe WorklistFile do
   end
 
   describe '#content' do
-    let(:entries_controller) { double('entries_controller') }
+    let(:orders_controller) { double('orders_controller') }
 
     before do
-      allow(EntriesController).to receive(:new) { entries_controller }
-      allow(entries_controller).to receive(:render_to_string)
+      allow(OrdersController).to receive(:new) { orders_controller }
+      allow(orders_controller).to receive(:render_to_string)
     end
 
-    it 'renders entries template to string' do
+    it 'renders orders template to string' do
       worklist_file.content
-      expect(entries_controller).to have_received(:render_to_string).
-        with('show.xml', locals: { entry: entry })
+      expect(orders_controller).to have_received(:render_to_string).
+        with('show.xml', locals: { order: order })
     end
 
     it 'returns rendered string' do
-      allow(entries_controller).to receive(:render_to_string) { 'chunky bacon' }
+      allow(orders_controller).to receive(:render_to_string) { 'chunky bacon' }
       expect(worklist_file.content).to eq 'chunky bacon'
     end
   end

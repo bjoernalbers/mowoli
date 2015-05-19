@@ -11,9 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150421083013) do
+ActiveRecord::Schema.define(version: 20150519140045) do
 
-  create_table "entries", force: :cascade do |t|
+  create_table "orders", force: :cascade do |t|
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
     t.string   "accession_number",                null: false
@@ -28,9 +28,9 @@ ActiveRecord::Schema.define(version: 20150421083013) do
     t.integer  "station_id",                      null: false
   end
 
-  add_index "entries", ["accession_number"], name: "index_entries_on_accession_number", unique: true
-  add_index "entries", ["station_id"], name: "index_entries_on_station_id"
-  add_index "entries", ["study_instance_uid"], name: "index_entries_on_study_instance_uid", unique: true
+  add_index "orders", ["accession_number"], name: "index_orders_on_accession_number", unique: true
+  add_index "orders", ["station_id"], name: "index_orders_on_station_id"
+  add_index "orders", ["study_instance_uid"], name: "index_orders_on_study_instance_uid", unique: true
 
   create_table "stations", force: :cascade do |t|
     t.string   "name",       null: false

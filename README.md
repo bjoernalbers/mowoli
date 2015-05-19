@@ -23,24 +23,24 @@ foreman start
 ```
 
 Create some stations with the [web UI](http://localhost:5000/stations)
-and then you're ready to create some worklist entries by HTTP POST requests,
+and then you're ready to create some worklist orders by HTTP POST requests,
 i.e. from your console:
 
 ```console
 /usr/bin/curl \
-  -F 'entry[patient_id]=674563' \
-  -F 'entry[patients_name]=Hasselhoff^David' \
-  -F 'entry[patients_birth_date]=1952-07-17' \
-  -F 'entry[patients_sex]=M' \
-  -F 'entry[referring_physicians_name]=House^Gregory^^Dr.' \
-  -F 'entry[requesting_physicians_name]=Volakis^Amber^^Dr.' \
-  -F 'entry[requested_procedure_description]=brain' \
-  -F 'entry[station_name]=PHILIPS_MR' \
-  -F 'entry[accession_number]=9837613118' \
-  http://localhost:5000/entries
+  -F 'order[patient_id]=674563' \
+  -F 'order[patients_name]=Hasselhoff^David' \
+  -F 'order[patients_birth_date]=1952-07-17' \
+  -F 'order[patients_sex]=M' \
+  -F 'order[referring_physicians_name]=House^Gregory^^Dr.' \
+  -F 'order[requesting_physicians_name]=Volakis^Amber^^Dr.' \
+  -F 'order[requested_procedure_description]=brain' \
+  -F 'order[station_name]=PHILIPS_MR' \
+  -F 'order[accession_number]=9837613118' \
+  http://localhost:5000/orders
 ```
 
-Entries are visible over the [web UI](http://localhost:5000/entries) as well.
+Orders are visible over the [web UI](http://localhost:5000/orders) as well.
 
 ## Worklist Attributes
 

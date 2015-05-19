@@ -1,8 +1,8 @@
 class WorklistFile
-  attr_reader :entry
+  attr_reader :order
 
-  def initialize(entry)
-    @entry = entry
+  def initialize(order)
+    @order = order
   end
 
   # Creates worklist file.
@@ -16,13 +16,13 @@ class WorklistFile
   end
 
   def content
-    EntriesController.new.
-      render_to_string('show.xml', locals: { entry: entry })
+    OrdersController.new.
+      render_to_string('show.xml', locals: { order: order })
   end
 
   def path
     File.join(Rails.configuration.worklist_dir,
-              entry.study_instance_uid + '.xml')
+              order.study_instance_uid + '.xml')
   end
 
   private

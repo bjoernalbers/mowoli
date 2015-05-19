@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Orders</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Accession number</th>
+      <th>Referring physicians name</th>
+      <th>Patients name</th>
+      <th>Patient</th>
+      <th>Patients birth date</th>
+      <th>Patients sex</th>
+      <th>Study instance uid</th>
+      <th>Requesting physicians name</th>
+      <th>Requested procedure description</th>
+      <th>Modality</th>
+      <th>Scheduled station ae title</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= order.accession_number %></td>
+        <td><%= order.referring_physicians_name %></td>
+        <td><%= order.patients_name %></td>
+        <td><%= order.patient_id %></td>
+        <td><%= order.patients_birth_date %></td>
+        <td><%= order.patients_sex %></td>
+        <td><%= order.study_instance_uid %></td>
+        <td><%= order.requesting_physicians_name %></td>
+        <td><%= order.requested_procedure_description %></td>
+        <td><%= order.modality %></td>
+        <td><%= order.scheduled_station_ae_title %></td>
+        <td><%# link_to 'Show', order %></td>
+        <td><%# link_to 'Edit', edit_order_path(order) %></td>
+        <td><%# link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%# link_to 'New Order', new_order_path %>

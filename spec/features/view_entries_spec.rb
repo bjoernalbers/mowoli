@@ -1,14 +1,14 @@
 #require 'spec_helper'
 require 'rails_helper'
 
-# In order know which entries are created
+# In order know which orders are created
 # As a user
-# I want to view entries
+# I want to view orders
 
-feature 'View entries' do
+feature 'View orders' do
   scenario 'on landing page' do
-    entry = FactoryGirl.create(:entry)
+    order = FactoryGirl.create(:order)
     visit root_url
-    expect(page).to have_content(entry.patients_name)
+    expect(page).to have_content(order.patients_name)
   end
 end

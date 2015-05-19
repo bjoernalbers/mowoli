@@ -5,10 +5,10 @@ RSpec.describe Station, type: :model do
     2.times { expect(create(:station)).to be_valid }
   end
 
-  it 'has many entries' do
+  it 'has many orders' do
     station = create(:station)
-    entry = create(:entry, station: station)
-    expect(station.entries).to match_array [entry]
+    order = create(:order, station: station)
+    expect(station.orders).to match_array [order]
   end
 
   describe '#name' do

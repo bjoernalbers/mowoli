@@ -49,7 +49,7 @@ class Station < ActiveRecord::Base
     'XC', # External-camera Photography 
   ]
 
-  has_many :entries
+  has_many :orders
 
   validates :name,
     presence: true,

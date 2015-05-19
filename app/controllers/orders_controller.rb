@@ -1,23 +1,23 @@
-class EntriesController < ApplicationController
+class OrdersController < ApplicationController
   protect_from_forgery except: [:create]
 
   def index
-    @entries = Entry.all
+    @orders = Order.all
   end
 
   def create
-    @entry =
-      Entry.find_by(accession_number: entry_params[:accession_number]) ||
-      Entry.new(entry_params)
+    @order =
+      Order.find_by(accession_number: order_params[:accession_number]) ||
+      Order.new(order_params)
 
-    if @entry.save
-      msg = "Entry successfully created:\n\n"
-      msg << @entry.attributes.map { |k,v| "#{k}: #{v}" }.join("\n")
+    if @order.save
+      msg = "Order successfully created:\n\n"
+      msg << @order.attributes.map { |k,v| "#{k}: #{v}" }.join("\n")
       msg << "\n"
       render text: msg, status: :created
     else
-      msg = "Failed to create entry! Errors:\n\n"
-      msg << @entry.errors.full_messages.join("\n")
+      msg = "Failed to create order! Errors:\n\n"
+      msg << @order.errors.full_messages.join("\n")
       msg << "\n"
       render text: msg, status: :unprocessable_entity
     end
@@ -25,8 +25,8 @@ class EntriesController < ApplicationController
 
   private
 
-  def entry_params
-    params.require(:entry).
+  def order_params
+    params.require(:order).
       permit(:accession_number,
              :referring_physicians_name,
              :patients_name,

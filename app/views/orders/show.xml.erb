@@ -3,21 +3,21 @@
   <!--Specific Character Set-->
   <attr tag="00080005" vr="CS">ISO_IR 100</attr>
   <!--Accession Number-->
-  <attr tag="00080050" vr="SH"><%= entry.accession_number %></attr>
+  <attr tag="00080050" vr="SH"><%= order.accession_number %></attr>
   <!--Referring Physician's Name-->
-  <attr tag="00080090" vr="PN"><%= entry.referring_physicians_name %></attr>
+  <attr tag="00080090" vr="PN"><%= order.referring_physicians_name %></attr>
   <!--Referenced Study Sequence-->
   <attr tag="00081110" vr="SQ"/>
   <!--Referenced Patient Sequence-->
   <attr tag="00081120" vr="SQ"/>
   <!--Patient's Name-->
-  <attr tag="00100010" vr="PN"><%= entry.patients_name %></attr>
+  <attr tag="00100010" vr="PN"><%= order.patients_name %></attr>
   <!--Patient ID-->
-  <attr tag="00100020" vr="LO"><%= entry.patient_id %></attr>
+  <attr tag="00100020" vr="LO"><%= order.patient_id %></attr>
   <!--Patient's Birth Date-->
-  <attr tag="00100030" vr="DA"><%= entry.patients_birth_date.strftime('%Y%m%d') %></attr>
+  <attr tag="00100030" vr="DA"><%= order.patients_birth_date.strftime('%Y%m%d') %></attr>
   <!--Patient's Sex-->
-  <attr tag="00100040" vr="CS"><%= entry.patients_sex %></attr>
+  <attr tag="00100040" vr="CS"><%= order.patients_sex %></attr>
   <!--Patient's Weight-->
   <attr tag="00101030" vr="DS"/>
   <!--Medical Alerts-->
@@ -27,16 +27,16 @@
   <!--Pregnancy Status-->
   <attr tag="001021C0" vr="US"/>
   <!--Study Instance UID-->
-  <attr tag="0020000D" vr="UI"><%= entry.study_instance_uid %></attr>
+  <attr tag="0020000D" vr="UI"><%= order.study_instance_uid %></attr>
   <!--Requesting Physician's Name-->
-  <attr tag="00321032" vr="PN"><%= entry.requesting_physicians_name %></attr>
+  <attr tag="00321032" vr="PN"><%= order.requesting_physicians_name %></attr>
   <!--Requested Procedure Description-->
-  <attr tag="00321060" vr="LO"><%= entry.requested_procedure_description %></attr>
+  <attr tag="00321060" vr="LO"><%= order.requested_procedure_description %></attr>
   <!--Requested Procedure Code Sequence-->
   <attr tag="00321064" vr="SQ">
     <item>
       <!--Code Value-->
-      <attr tag="00080100" vr="SH"><%= entry.requested_procedure_description %></attr>
+      <attr tag="00080100" vr="SH"><%= order.requested_procedure_description %></attr>
       <!--Coding Scheme Designator-->
       <attr tag="00080102" vr="SH">ConVis</attr>
       <!--Code Meaning-->
@@ -55,24 +55,24 @@
   <attr tag="00400100" vr="SQ">
     <item>
       <!--Modality-->
-      <attr tag="00080060" vr="CS"><%= entry.modality %></attr>
+      <attr tag="00080060" vr="CS"><%= order.modality %></attr>
       <!--Requested Contrast Agent-->
       <attr tag="00321070" vr="LO"/>
       <!--Scheduled Station AE Title-->
-      <attr tag="00400001" vr="AE"><%= entry.scheduled_station_ae_title %></attr>
+      <attr tag="00400001" vr="AE"><%= order.scheduled_station_ae_title %></attr>
       <!--Scheduled Procedure Step Start Date-->
-      <attr tag="00400002" vr="DA"><%= entry.created_at.strftime('%Y%m%d') if entry.created_at.present? %></attr>
+      <attr tag="00400002" vr="DA"><%= order.created_at.strftime('%Y%m%d') if order.created_at.present? %></attr>
       <!--Scheduled Procedure Step Start Time-->
-      <attr tag="00400003" vr="TM"><%= entry.created_at.strftime('%H%M%S') if entry.created_at.present? %></attr>
+      <attr tag="00400003" vr="TM"><%= order.created_at.strftime('%H%M%S') if order.created_at.present? %></attr>
       <!--Scheduled Performing Physician's Name-->
       <attr tag="00400006" vr="PN">Radiologische Gemeinschaftspraxis im EVK Lippstadt</attr>
       <!--Scheduled Procedure Step Description-->
-      <attr tag="00400007" vr="LO"><%= entry.requested_procedure_description %></attr>
+      <attr tag="00400007" vr="LO"><%= order.requested_procedure_description %></attr>
       <!--Scheduled Protocol Code Sequence-->
       <attr tag="00400008" vr="SQ">
         <item>
           <!--Code Value-->
-          <attr tag="00080100" vr="SH"><%= entry.requested_procedure_description %></attr>
+          <attr tag="00080100" vr="SH"><%= order.requested_procedure_description %></attr>
           <!--Coding Scheme Designator-->
           <attr tag="00080102" vr="SH">ConVis</attr>
           <!--Code Meaning-->
@@ -80,7 +80,7 @@
         </item>
       </attr>
       <!--Scheduled Procedure Step ID-->
-      <attr tag="00400009" vr="SH"><%= entry.accession_number %></attr>
+      <attr tag="00400009" vr="SH"><%= order.accession_number %></attr>
       <!--Scheduled Station Name-->
       <attr tag="00400010" vr="SH"/>
       <!--Scheduled Procedure Step Location -->
@@ -92,7 +92,7 @@
     </item>
   </attr>
   <!--Requested Procedure ID-->
-  <attr tag="00401001" vr="SH"><%= entry.accession_number %></attr>
+  <attr tag="00401001" vr="SH"><%= order.accession_number %></attr>
   <!--Requested Procedure Priority-->
   <attr tag="00401003" vr="SH"/>
   <!--Patient Transport Arrangements-->

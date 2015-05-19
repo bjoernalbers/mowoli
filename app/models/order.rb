@@ -1,4 +1,4 @@
-class Entry < ActiveRecord::Base
+class Order < ActiveRecord::Base
   PATIENTS_SEX_CODES = [
     'F', # Female
     'M', # Male

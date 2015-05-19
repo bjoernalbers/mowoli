@@ -2,58 +2,58 @@
 
 <p>
   <strong>Accession number:</strong>
-  <%= @entry.accession_number %>
+  <%= @order.accession_number %>
 </p>
 
 <p>
   <strong>Referring physicians name:</strong>
-  <%= @entry.referring_physicians_name %>
+  <%= @order.referring_physicians_name %>
 </p>
 
 <p>
   <strong>Patients name:</strong>
-  <%= @entry.patients_name %>
+  <%= @order.patients_name %>
 </p>
 
 <p>
   <strong>Patient:</strong>
-  <%= @entry.patient_id %>
+  <%= @order.patient_id %>
 </p>
 
 <p>
   <strong>Patients birth date:</strong>
-  <%= @entry.patients_birth_date %>
+  <%= @order.patients_birth_date %>
 </p>
 
 <p>
   <strong>Patients sex:</strong>
-  <%= @entry.patients_sex %>
+  <%= @order.patients_sex %>
 </p>
 
 <p>
   <strong>Study instance uid:</strong>
-  <%= @entry.study_instance_uid %>
+  <%= @order.study_instance_uid %>
 </p>
 
 <p>
   <strong>Requesting physicians name:</strong>
-  <%= @entry.requesting_physicians_name %>
+  <%= @order.requesting_physicians_name %>
 </p>
 
 <p>
   <strong>Requested procedure description:</strong>
-  <%= @entry.requested_procedure_description %>
+  <%= @order.requested_procedure_description %>
 </p>
 
 <p>
   <strong>Modality:</strong>
-  <%= @entry.modality %>
+  <%= @order.modality %>
 </p>
 
 <p>
   <strong>Scheduled station ae title:</strong>
-  <%= @entry.scheduled_station_ae_title %>
+  <%= @order.scheduled_station_ae_title %>
 </p>
 
-<%= link_to 'Edit', edit_entry_path(@entry) %> |
-<%= link_to 'Back', entries_path %>
+<%= link_to 'Edit', edit_order_path(@order) %> |
+<%= link_to 'Back', orders_path %>
