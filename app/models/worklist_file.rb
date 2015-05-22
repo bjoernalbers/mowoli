@@ -22,7 +22,7 @@ class WorklistFile
 
   def path
     File.join(Rails.configuration.worklist_dir,
-              order.study_instance_uid + '.xml')
+              "#{order.id}.xml")
   end
 
   private

@@ -1,0 +1,31 @@
+HTTP/1.1 200 OK
+X-Frame-Options: SAMEORIGIN
+X-XSS-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+Content-Type: application/json; charset=utf-8
+ETag: W/"dd75611d8d46b9abb0aa1de492dd23b4"
+Cache-Control: max-age=0, private, must-revalidate
+X-Request-Id: 67923456-2fa5-4e51-909b-2c082934d67e
+X-Runtime: 1.017951
+Transfer-Encoding: chunked
+
+[
+   {
+      "name" : "PFEFFER",
+      "modality" : "CR",
+      "aetitle" : "PHILIPS",
+      "id" : 1
+   },
+   {
+      "modality" : "MG",
+      "aetitle" : "SIEMENS",
+      "id" : 37,
+      "name" : "BEDNAR"
+   },
+   {
+      "id" : 38,
+      "aetitle" : "PHILIPS",
+      "modality" : "MR",
+      "name" : "HAUCK"
+   }
+]

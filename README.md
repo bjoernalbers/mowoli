@@ -22,23 +22,9 @@ bin/rake db:create db:schema:load
 foreman start
 ```
 
-Create some stations with the [web UI](http://localhost:5000/stations)
-and then you're ready to create some worklist orders by HTTP POST requests,
-i.e. from your console:
-
-```console
-/usr/bin/curl \
-  -F 'order[patient_id]=674563' \
-  -F 'order[patients_name]=Hasselhoff^David' \
-  -F 'order[patients_birth_date]=1952-07-17' \
-  -F 'order[patients_sex]=M' \
-  -F 'order[referring_physicians_name]=House^Gregory^^Dr.' \
-  -F 'order[requesting_physicians_name]=Volakis^Amber^^Dr.' \
-  -F 'order[requested_procedure_description]=brain' \
-  -F 'order[station_name]=PHILIPS_MR' \
-  -F 'order[accession_number]=9837613118' \
-  http://localhost:5000/orders
-```
+Create some stations via the [web UI](http://localhost:5000/stations)
+and then you're ready to create some worklist orders by HTTP POSTs.
+Please check the examples folder.
 
 Orders are visible over the [web UI](http://localhost:5000/orders) as well.
 

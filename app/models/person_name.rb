@@ -3,6 +3,10 @@ class PersonName
 
   ATTRIBUTES = %i(family given middle prefix suffix)
 
+  def self.attributes
+    ATTRIBUTES
+  end
+
   ATTRIBUTES.each { |attr| attr_accessor attr }
 
   def to_s

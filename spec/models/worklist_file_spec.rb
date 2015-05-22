@@ -5,7 +5,7 @@ describe WorklistFile do
   let(:worklist_file) { WorklistFile.new(order) }
 
   before do
-    allow(order).to receive(:study_instance_uid) { '1.23.456' }
+    allow(order).to receive(:id) { 42 }
   end
 
   describe '#create' do
@@ -58,7 +58,7 @@ describe WorklistFile do
 
   describe '#path' do
     it 'returns path to worklist file' do
-      expect(worklist_file.path).to eq "#{Rails.configuration.worklist_dir}/1.23.456.xml"
+      expect(worklist_file.path).to eq "#{Rails.configuration.worklist_dir}/#{order.id}.xml"
     end
   end
 end

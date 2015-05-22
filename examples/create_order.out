@@ -1,0 +1,27 @@
+HTTP/1.1 201 Created
+X-Frame-Options: SAMEORIGIN
+X-XSS-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+Location: http://localhost:5000/api/v1/orders/28
+Content-Type: application/json; charset=utf-8
+ETag: W/"e8a10f9114fed3c9ef581c3b5fedefe8"
+Cache-Control: max-age=0, private, must-revalidate
+X-Request-Id: 7fc3a6cc-fe72-4da2-b37b-40ffed062a82
+X-Runtime: 0.043313
+Transfer-Encoding: chunked
+
+{
+   "accession_number" : "9837613118",
+   "id" : 28,
+   "patient_id" : "674563",
+   "patients_sex" : "M",
+   "study_instance_uid" : "1.2.826.0.1.3680043.9.5265.3922003023206921138129094114820837421",
+   "station" : {
+      "aetitle" : "PHILIPS",
+      "id" : 1,
+      "name" : "PFEFFER",
+      "modality" : "CR"
+   },
+   "patients_birth_date" : "1952-07-17",
+   "patients_name" : "Hasselhoff^David^Michael^Mr.^(Knight Rider)"
+}
