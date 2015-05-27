@@ -1,7 +1,8 @@
 FactoryGirl.define do
   factory :station do
-    name { Faker::Name.last_name.upcase }
-    modality { %w(MR CT CR US MG).sample }
-    aetitle { %w(PHILIPS SIEMENS AGFA).sample }
+    name { %w(HAL T-800 T-1000 R2-D2 C-3PO C16 C64 Amiga500 Apple1 Bender Skynet
+              WOPR Johnny5 Arduino Thermomix iPod iBookG4 KITT PDP-10).sample }
+    modality { %w(MR CT CR US MG XA).sample }
+    aetitle { %w(RED GREEN BLUE).sample + (1..9).to_a.sample.to_s }
   end
 end
