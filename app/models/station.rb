@@ -52,8 +52,7 @@ class Station < ActiveRecord::Base
   has_many :orders
 
   validates :name,
-    presence: true,
-    uniqueness: true
+    presence: true
 
   validates :modality,
     presence: true,

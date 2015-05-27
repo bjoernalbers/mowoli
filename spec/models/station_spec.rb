@@ -18,14 +18,6 @@ RSpec.describe Station, type: :model do
       expect(station.errors[:name]).to be_present
       expect{ station.save!(validate: false) }.to raise_error
     end
-
-    it 'must be unique' do
-      other = create(:station)
-      station = build(:station, name: other.name)
-      expect(station).to be_invalid
-      expect(station.errors[:name]).to be_present
-      expect{ station.save!(validate: false) }.to raise_error
-    end
   end
 
   describe '#modality' do
