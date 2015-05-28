@@ -11,12 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150527153638) do
+ActiveRecord::Schema.define(version: 20150528123140) do
 
   create_table "orders", force: :cascade do |t|
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
-    t.string   "accession_number",                null: false
     t.string   "patient_id",                      null: false
     t.string   "patients_sex",                    null: false
     t.string   "patients_name",                   null: false
@@ -28,7 +27,6 @@ ActiveRecord::Schema.define(version: 20150527153638) do
     t.integer  "station_id",                      null: false
   end
 
-  add_index "orders", ["accession_number"], name: "index_orders_on_accession_number", unique: true
   add_index "orders", ["station_id"], name: "index_orders_on_station_id"
   add_index "orders", ["study_instance_uid"], name: "index_orders_on_study_instance_uid", unique: true
 

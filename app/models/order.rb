@@ -17,12 +17,6 @@ class Order < ActiveRecord::Base
     presence: true,
     inclusion: { in: PATIENTS_SEX_CODES }
 
-  # DICOM Value Representation: SH (Short String)
-  validates :accession_number,
-    presence: true,
-    uniqueness: true,
-    length: { maximum: 16 }
-
   # DICOM Value Representation: LO (Long String)
   validates :patient_id, :requested_procedure_description,
     presence: true, length: { maximum: 64 }
@@ -41,14 +35,16 @@ class Order < ActiveRecord::Base
     length: { maximum: 64 },
     format: { with: /\A[\d\.]+\Z/ }
 
-  before_validation :strip_whitespaces
-
   before_validation :set_study_instance_uid
 
   before_validation :set_station
 
   after_create :create_worklist_file
   after_destroy :delete_worklist_file
+
+  def accession_number
+    id.to_s
+  end
 
   def modality
     station.modality if station
@@ -71,11 +67,6 @@ class Order < ActiveRecord::Base
   end
 
   private
-
-  def strip_whitespaces
-    self.accession_number =
-      accession_number.strip if accession_number.present?
-  end
 
   def set_study_instance_uid
     self.study_instance_uid =

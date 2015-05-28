@@ -49,23 +49,6 @@ describe 'Orders APIv1' do
       end
     end
 
-    context 'with existing accession number' do
-      let!(:order) { FactoryGirl.create(:order) }
-      let(:station) { FactoryGirl.create(:station) }
-      let(:params) do
-        { order: FactoryGirl.build(:order, accession_number: order.accession_number).attributes.compact }
-      end
-
-      it 'returns HTTP status 201' do
-        do_post
-        expect( response.status ).to eq 201
-      end
-
-      it 'creates no order' do
-        expect{ do_post }.to change(Order, :count).by(0)
-      end
-    end
-
     context 'with invalid params' do
       let(:params) do
         { order: FactoryGirl.attributes_for(:order) }

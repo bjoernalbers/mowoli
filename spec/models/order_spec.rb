@@ -71,35 +71,10 @@ RSpec.describe Order, type: :model do
   end
 
   describe '#accession_number' do
-    it 'must be present' do
-      order.accession_number = nil
-      expect(order).not_to be_valid
-      expect{ order.save(validate: false) }.to raise_error
-    end
-
-    it 'must contains 16 characters max' do
-      order.accession_number = '0' * 17
-      expect(order).not_to be_valid
-      order.accession_number = '0' * 16
-      expect(order).to be_valid
-    end
-
-    it 'ignores leading or trailing spaces' do
-      order.accession_number = "\t 42\t  "
-      order.valid? # NOTE: Runs callback
+    it 'returns id as string' do
+      order.id = 42
       expect(order.accession_number).to eq '42'
     end
-
-    it 'must be unique' do
-      other = create(:order)
-      order = build(:order, accession_number: other.accession_number)
-      expect(order).to be_invalid
-      expect(order.errors[:accession_number]).to be_present
-      expect{ order.save!(validate: false) }.to raise_error
-    end
-
-    #it 'shall have no control characters except ESC'
-    #it 'shall have no backslash'
   end
 
   describe '#referring_physicians_name' do

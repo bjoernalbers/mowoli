@@ -7,7 +7,6 @@ curl --request POST 'http://localhost:5000/api/v1/orders' \
   --data \
 '{
     "order": {
-        "accession_number":                     "9837613118",
         "patient_id":                           "674563",
         "patients_birth_date":                  "1952-07-17",
         "patients_sex":                         "M",

@@ -10,8 +10,8 @@ describe 'rendering order template' do
     expect(rendered).to include '<attr tag="00080005" vr="CS">ISO_IR 100</attr>'
   end
 
-  it 'includes "Accession Number"' do
-    render_template_with(build(:order, accession_number: '123'))
+  it 'includes id as "Accession Number"' do
+    render_template_with(build(:order, id: '123'))
     expect(rendered).to include '<attr tag="00080050" vr="SH">123</attr>'
   end
 
@@ -177,8 +177,8 @@ describe 'rendering order template' do
       </attr>'
   end
 
-  it 'includes "Scheduled Procedure Step ID"' do
-    render_template_with(build(:order, accession_number: '123'))
+  it 'includes id as "Scheduled Procedure Step ID"' do
+    render_template_with(build(:order, id: '123'))
     expect(rendered).to include '<attr tag="00400009" vr="SH">123</attr>'
   end
 
@@ -202,8 +202,8 @@ describe 'rendering order template' do
     expect(rendered).to include '<attr tag="00400020" vr="CS"/>'
   end
 
-  it 'includes "Requested Procedure ID"' do
-    render_template_with(build(:order, accession_number: '123'))
+  it 'includes id as "Requested Procedure ID"' do
+    render_template_with(build(:order, id: '123'))
     expect(rendered).to include '<attr tag="00401001" vr="SH">123</attr>'
   end
 

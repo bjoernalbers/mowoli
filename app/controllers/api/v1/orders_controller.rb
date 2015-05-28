@@ -10,10 +10,7 @@ module API
       end
 
       def create
-        @order =
-          Order.find_by(accession_number: order_params[:accession_number]) ||
-          Order.new(order_params)
-
+        @order = Order.new(order_params)
         if @order.save
           render :show, status: :created, location: api_v1_order_url(@order)
         else
@@ -35,9 +32,7 @@ module API
 
       def order_params
         params.require(:order).
-          permit(:accession_number,
-                 :patients_name,
-                 :patient_id,
+          permit(:patient_id,
                  :patients_birth_date,
                  :patients_sex,
                  :requested_procedure_description,

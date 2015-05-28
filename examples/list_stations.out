@@ -3,29 +3,35 @@ X-Frame-Options: SAMEORIGIN
 X-XSS-Protection: 1; mode=block
 X-Content-Type-Options: nosniff
 Content-Type: application/json; charset=utf-8
-ETag: W/"dd75611d8d46b9abb0aa1de492dd23b4"
+ETag: W/"2ec54d8077376ff120be20d5e00c31b4"
 Cache-Control: max-age=0, private, must-revalidate
-X-Request-Id: 67923456-2fa5-4e51-909b-2c082934d67e
-X-Runtime: 1.017951
+X-Request-Id: 924274ed-51b3-475e-a6c7-1f8a61c18e43
+X-Runtime: 0.032637
 Transfer-Encoding: chunked
 
 [
    {
-      "name" : "PFEFFER",
-      "modality" : "CR",
-      "aetitle" : "PHILIPS",
-      "id" : 1
-   },
-   {
       "modality" : "MG",
-      "aetitle" : "SIEMENS",
-      "id" : 37,
-      "name" : "BEDNAR"
+      "id" : 1,
+      "aetitle" : "BLUE4",
+      "name" : "Apple1"
    },
    {
-      "id" : 38,
-      "aetitle" : "PHILIPS",
+      "name" : "C-3PO",
+      "aetitle" : "GREEN3",
       "modality" : "MR",
-      "name" : "HAUCK"
+      "id" : 68
+   },
+   {
+      "name" : "KITT",
+      "aetitle" : "GREEN9",
+      "id" : 69,
+      "modality" : "XA"
+   },
+   {
+      "aetitle" : "BLUE7",
+      "name" : "Thermomix",
+      "modality" : "CT",
+      "id" : 70
    }
 ]
