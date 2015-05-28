@@ -15,13 +15,17 @@ describe 'Orders APIv1' do
     end
 
     context 'with valid params' do
-      before do
-        pending 'FIX busted params'
-      end
-
       let!(:station) { FactoryGirl.create(:station) }
       let(:params) do
-        { order: FactoryGirl.build(:order).attributes.compact }
+        p = { order: FactoryGirl.build(:order).attributes.compact }
+        [
+          :patients_name_attributes,
+          :referring_physicians_name_attributes,
+          :requesting_physicians_name_attributes
+        ].each do |attr|
+          p[:order][attr] = FactoryGirl.attributes_for(:person_name)
+        end
+        p
       end
 
       it 'returns HTTP status 201' do
