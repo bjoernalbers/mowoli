@@ -48,6 +48,18 @@ for their
 service!).
 
 
+# Deployment on Tomcat
+
+Mowoli runs fine on JRuby, tested with these verions:
+
+- Java JDK 8u45
+- JRuby 1.7.20
+- Warbler 1.4.7
+- Bundler 1.9.9 (NOTE: Version 1.10.* is not yet supported by Warbler!)
+
+Then run `warble runnable war` and throw the resulting *mowoli.war* into Tomcat.
+
+
 ## Copyright
 
 Copyright (c) 2015 Björn Albers

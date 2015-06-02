@@ -1,7 +1,7 @@
 class PersonName
   include ActiveModel::Model
 
-  ATTRIBUTES = %i(family given middle prefix suffix)
+  ATTRIBUTES = [:family, :given, :middle, :prefix, :suffix]
 
   def self.attributes
     ATTRIBUTES

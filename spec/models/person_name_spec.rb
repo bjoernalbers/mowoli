@@ -10,14 +10,14 @@ RSpec.describe PersonName, type: :model do
 
   it 'has factory for basic attributes' do
     person = build(:person_name)
-    %i(family given).each do |attr|
+    [:family, :given].each do |attr|
       expect(person.send(attr)).to be_present
     end
   end
 
   it 'has factory for all attributes' do
     person = build(:full_person_name)
-    %i(family given middle prefix suffix).each do |attr|
+    [:family, :given, :middle, :prefix, :suffix].each do |attr|
       expect(person.send(attr)).to be_present
     end
   end
