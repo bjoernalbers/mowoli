@@ -9,11 +9,17 @@ default: &default
   adapter: postgresql
   pool: 5
   timeout: 5000
+  database: mowoli
+  host: localhost
+  port: 5432
+  username: test
+  password: test
+  encoding: utf8
 
 development:
   <<: *default
   #database: db/development.sqlite3
-  database: mowoli_development
+  #database: mowoli_development
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -21,9 +27,9 @@ development:
 test:
   <<: *default
   #database: db/test.sqlite3
-  database: mowoli_test
+  #database: mowoli_test
 
 production:
   <<: *default
   #database: db/production.sqlite3
-  database: mowoli_production
+  #database: mowoli_production

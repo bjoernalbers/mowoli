@@ -59,6 +59,41 @@ Mowoli runs fine on JRuby, tested with these verions:
 
 Then run `warble runnable war` and throw the resulting *mowoli.war* into Tomcat.
 
+# Deployment on Tomcat for dummies on OSX without homebrew
+- Go to a tmp folder and install some helpers
+```console
+wget -O chruby-0.3.9.tar.gz https://github.com/postmodern/chruby/archive/v0.3.9.tar.gz
+tar -xzvf chruby-0.3.9.tar.gz
+cd chruby-0.3.9/
+sudo make install
+echo "source /usr/local/share/chruby/chruby.sh" >> ~/.bash_profile
+cd ..
+```
+```console
+wget -O ruby-install-0.5.0.tar.gz https://github.com/postmodern/ruby-install/archive/v0.5.0.tar.gz
+tar -xzvf ruby-install-0.5.0.tar.gz
+cd ruby-install-0.5.0/
+sudo make install
+cd ..
+```
+- Restart Terminal (or do a bash)
+```console
+ruby-install jruby 1.7.20
+chruby 1.7.20
+gem install warbler
+gem install bundler -v 1.9.9
+```
+- Create Database as in database.yml or change it there
+- Go to mowoli folder
+```console
+bundle
+warble executeble war
+```
+- Copy to the webapps folder
+
+
+
+
 
 ## Copyright
 
