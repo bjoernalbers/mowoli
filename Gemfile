@@ -1,11 +1,13 @@
 source 'https://rubygems.org'
 
-ruby '1.9.3', :engine => 'jruby', :engine_version => '1.7.20'
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
-# Use sqlite3 as the database for Active Record
-gem 'activerecord-jdbcpostgresql-adapter'
+
+# Active Record stuff for deploying inside Tomcat...
+gem 'activerecord-jdbcpostgresql-adapter', platform: 'jruby'
+# ...and for deploying standalone
+gem 'sqlite3', platform: 'ruby'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -32,7 +34,7 @@ gem 'puma'
 
 # Use Capistrano for deployment
 group :development do
-  gem 'capistrano', '~> 3.3'
+  gem 'capistrano', '3.3.5'
   gem 'capistrano-rails', '~> 1.1'
   gem 'capistrano-bundler', '~> 1.1'
   #gem 'capistrano-chruby', '~> 0.1'
