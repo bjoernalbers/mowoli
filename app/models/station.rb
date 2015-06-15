@@ -61,5 +61,5 @@ class Station < ActiveRecord::Base
   validates :aetitle,
     presence: true,
     length: { maximum: 16 },
-    format: { with: /\A[A-Z\d\_]+\Z/ }
+    format: { with: /\A[a-zA-Z\d\_\.\-]+\Z/ }
 end
