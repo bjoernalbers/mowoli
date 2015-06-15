@@ -8,9 +8,9 @@
   <array>
     <string>bundle</string>
     <string>exec</string>
-    <string>rails</string>
-    <string>server</string>
-    <string>--binding=0.0.0.0</string>
+    <string>puma</string>
+    <string>--config</string>
+    <string>config/puma.rb</string>
   </array>
   <key>EnvironmentVariables</key>
   <dict>
@@ -18,6 +18,8 @@
     <string>/usr/local/bin:/usr/local/opt/ruby/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
     <key>RAILS_ENV</key>
     <string>production</string>
+    <key>MWL_DIR</key>
+    <string>/tmp/mwl</string>
   </dict>
   <key>RunAtLoad</key>
   <true/>
