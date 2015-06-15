@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1, defaults: { format: :json } do
-      resources :orders,   only: [:create, :show, :destroy]
+      resources :orders,   only: [:create, :show, :update, :destroy]
       resources :stations, only: [:index]
     end
   end
