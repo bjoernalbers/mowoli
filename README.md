@@ -50,7 +50,7 @@ service!).
 
 # Deployment on Tomcat
 
-Mowoli runs fine on JRuby, tested with these verions:
+Mowoli runs fine on JRuby, tested with these versions:
 
 - Java JDK 8u45
 - JRuby 1.7.20

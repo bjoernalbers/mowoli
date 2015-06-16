@@ -9,6 +9,69 @@ describe 'Orders APIv1' do
   let(:headers) { { 'Accept' => nil } }
   let(:params)  { { } }
 
+  describe 'PUT /api/v1/orders/:id' do
+    let!(:order) { FactoryGirl.create(:order) }
+
+    def do_put
+      put "/api/v1/orders/#{order.id}", params, headers
+    end
+
+    context 'with valid params' do
+      let!(:station) { FactoryGirl.create(:station) }
+      let(:params) do
+        p = { order: FactoryGirl.build(:order, patient_id: '23').attributes.compact }
+        [
+          :patients_name_attributes,
+          :referring_physicians_name_attributes,
+          :requesting_physicians_name_attributes
+        ].each do |attr|
+          p[:order][attr] = FactoryGirl.attributes_for(:person_name)
+        end
+        p
+      end
+
+      it 'returns HTTP status 201' do
+        do_put
+        expect(response.status).to eq 200
+      end
+
+      it 'returns order in JSON' do
+        do_put
+        expect(response.content_type).to be_json
+        expect(response).to render_template(:show)
+      end
+
+      it 'updates order' do
+        expect(order.patient_id).not_to eq '23'
+        do_put
+        order.reload
+        expect(order.patient_id).to eq '23'
+      end
+    end
+
+    context 'with invalid params' do
+      let(:params) do
+        { order: FactoryGirl.attributes_for(:order, station_id: nil, patient_id: '23') }
+      end
+
+      it 'returns HTTP status 422' do
+        do_put
+        expect( response.status ).to eq 422
+      end
+
+      it 'creates no order' do
+        do_put
+        order.reload
+        expect(order.patient_id).not_to eq '23'
+      end
+
+      it 'returns validation errors' do
+        do_put
+        expect(json['errors']).to be_present
+      end
+    end
+  end
+
   describe 'POST /api/v1/orders' do
     def do_post
       post '/api/v1/orders', params, headers

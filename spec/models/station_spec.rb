@@ -63,14 +63,20 @@ RSpec.describe Station, type: :model do
       expect(station.errors[:aetitle]).to be_present
     end
 
-    it 'must include only upper case characters, underscores and digits' do
-      station = build(:station, aetitle: 'PHILIPS_MR_1')
-      expect(station).to be_valid
+    it 'must include only characters, digits, underscores, dashes and dots' do
+      valid_aetitles = [
+        'PHILIPS_MR_1',
+        'PHILIPS-1',
+        'PHILIPS.1',
+        'philips',
+        'Philips'
+      ]
+      valid_aetitles.each do |aetitle|
+        station = build(:station, aetitle: aetitle)
+        expect(station).to be_valid
+      end
 
       invalid_aetitles = [
-        'philips',
-        'Philips',
-        'PHILIPS-1',
         'PHILIPS 1',
         'PHILIPS,1'
       ]
