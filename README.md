@@ -48,7 +48,7 @@ for their
 service!).
 
 
-# Deployment on Tomcat
+## Deployment on Tomcat
 
 Mowoli runs fine on JRuby, tested with these versions:
 
@@ -58,6 +58,21 @@ Mowoli runs fine on JRuby, tested with these versions:
 - Bundler 1.9.9 (NOTE: Version 1.10.* is not yet supported by Warbler!)
 
 Then run `warble runnable war` and throw the resulting *mowoli.war* into Tomcat.
+
+## Change start value for accession numbers
+
+If you have existing studies in your PACS and you'll likely create new orders with an accession number offset.
+This is what I did to create accession numbers starting at 500.000:
+
+    $ bin/rails db -e production
+    SQLite version 3.7.13 2012-07-17 17:46:21
+    Enter ".help" for instructions
+    Enter SQL statements terminated with a ";"
+    sqlite> UPDATE SQLITE_SEQUENCE SET seq = 500000 where name = 'orders';
+    sqlite> SELECT name, seq FROM SQLITE_SEQUENCE;                                                                                                                                                   
+    stations|10
+    orders|500000
+    sqlite> .quit
 
 
 ## Copyright
