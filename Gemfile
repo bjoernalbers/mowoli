@@ -53,3 +53,5 @@ end
 gem 'responders', '~> 2.0'
 
 gem 'rails_serve_static_assets'
+
+gem 'dotenv-rails'
