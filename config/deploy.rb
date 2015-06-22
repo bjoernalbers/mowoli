@@ -26,7 +26,7 @@ set :repo_url, 'git@github.com:bjoernalbers/mowoli.git'
 # Default value for :linked_files is []
 set :linked_files, fetch(:linked_files, []).push('config/database.yml',
                                                  'config/secrets.yml',
-                                                 'db/production.sqlite4',
+                                                 'db/production.sqlite3',
                                                  '.env')
 
 # Default value for linked_dirs is []
