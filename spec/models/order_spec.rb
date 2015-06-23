@@ -306,4 +306,25 @@ RSpec.describe Order, type: :model do
     #it 'returns order creation time'
 
   describe '#scheduled_performing_physicians_name'
+
+  describe '.purge_expired' do
+    let(:now) { Time.zone.now }
+    let(:order) { build(:order) }
+
+    it 'destroys orders since yesterday' do
+      Timecop.freeze(now.beginning_of_day - 1.second) do
+        order.save!
+      end
+      Order.purge_expired
+      expect(Order).not_to exist(order.id)
+    end
+
+    it 'does not destroy orders from today' do
+      Timecop.freeze(now.beginning_of_day) do
+        order.save!
+      end
+      Order.purge_expired
+      expect(Order).to exist(order.id)
+    end
+  end
 end

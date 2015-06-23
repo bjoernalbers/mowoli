@@ -42,6 +42,10 @@ class Order < ActiveRecord::Base
   after_create :create_worklist_file
   after_destroy :delete_worklist_file
 
+  def self.purge_expired
+    where('created_at < ?', Time.zone.now.beginning_of_day).destroy_all
+  end
+
   def accession_number
     id.to_s
   end
