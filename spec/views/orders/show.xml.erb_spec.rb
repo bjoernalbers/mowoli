@@ -153,8 +153,19 @@ describe 'rendering order template' do
   end
 
   it 'includes "Scheduled Performing Physicians Name"' do
+    # Back up environment
+    @scheduled_performing_physicians_name =
+      ENV['SCHEDULED_PERFORMING_PHYSICIANS_NAME']
+
+    # Change environment
+    ENV['SCHEDULED_PERFORMING_PHYSICIANS_NAME'] = 'Chunky Bacon'
+
     render_template_with(build(:order))
-    expect(rendered).to include '<attr tag="00400006" vr="PN">Radiologische Gemeinschaftspraxis im EVK Lippstadt</attr>'
+    expect(rendered).to include '<attr tag="00400006" vr="PN">Chunky Bacon</attr>'
+
+    # Restore environment
+    ENV['SCHEDULED_PERFORMING_PHYSICIANS_NAME'] =
+      @scheduled_performing_physicians_name
   end
 
   it 'includes "Scheduled Procedure Step Description"' do

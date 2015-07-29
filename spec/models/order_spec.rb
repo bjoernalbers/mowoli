@@ -305,7 +305,46 @@ RSpec.describe Order, type: :model do
   describe '#scheduled_procedure_step_start_time'
     #it 'returns order creation time'
 
-  describe '#scheduled_performing_physicians_name'
+  describe '#scheduled_performing_physicians_name' do
+    before do
+      # Back up environment
+      @scheduled_performing_physicians_name =
+        ENV['SCHEDULED_PERFORMING_PHYSICIANS_NAME']
+    end
+
+    after do
+      # Restore environment
+      ENV['SCHEDULED_PERFORMING_PHYSICIANS_NAME'] =
+        @scheduled_performing_physicians_name
+    end
+
+    it 'gets initialized from environment' do
+      ENV['SCHEDULED_PERFORMING_PHYSICIANS_NAME'] = 'chunky^bacon'
+      expect(order.scheduled_performing_physicians_name).to eq 'chunky^bacon'
+    end
+
+    it 'is overwritable' do
+      ENV['SCHEDULED_PERFORMING_PHYSICIANS_NAME'] = 'chunky^bacon'
+      order = build(:order, scheduled_performing_physicians_name: 'bacon')
+      expect(order.scheduled_performing_physicians_name).to eq 'bacon'
+    end
+
+    it 'validates presence' do
+      order = build(:order, scheduled_performing_physicians_name: nil)
+      expect(order.scheduled_performing_physicians_name).to be_nil
+      expect(order).to be_invalid
+      expect(order.errors[:scheduled_performing_physicians_name]).to be_present
+    end
+
+    it 'validates length' do
+      order = build(:order, scheduled_performing_physicians_name: 'x'*64)
+      expect(order).to be_valid
+
+      order = build(:order, scheduled_performing_physicians_name: 'x'*65)
+      expect(order).to be_invalid
+      expect(order.errors[:scheduled_performing_physicians_name]).to be_present
+    end
+  end
 
   describe '.purge_expired' do
     let(:now) { Time.zone.now }

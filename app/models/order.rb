@@ -7,7 +7,9 @@ class Order < ActiveRecord::Base
 
   belongs_to :station
 
-  attr_accessor :station_name
+  attr_accessor :station_name, :scheduled_performing_physicians_name
+
+  after_initialize :set_default_scheduled_performing_physicians_name
 
   validates :station,
     presence: true
@@ -22,7 +24,10 @@ class Order < ActiveRecord::Base
     presence: true, length: { maximum: 64 }
 
   # DICOM Value Representation: PN (Person Name)
-  validates :referring_physicians_name, :patients_name, :requesting_physicians_name,
+  validates :patients_name,
+    :referring_physicians_name,
+    :requesting_physicians_name,
+    :scheduled_performing_physicians_name,
     presence: true, length: { maximum: 64 }
 
   # DICOM Value Representation: DA (Date)
@@ -75,6 +80,11 @@ class Order < ActiveRecord::Base
   def set_study_instance_uid
     self.study_instance_uid =
       UniqueIdentifier.new.generate unless study_instance_uid
+  end
+
+  def set_default_scheduled_performing_physicians_name
+    self.scheduled_performing_physicians_name =
+      ENV['SCHEDULED_PERFORMING_PHYSICIANS_NAME']
   end
 
   def set_station

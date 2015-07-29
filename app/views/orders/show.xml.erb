@@ -65,7 +65,7 @@
       <!--Scheduled Procedure Step Start Time-->
       <attr tag="00400003" vr="TM"><%= order.created_at.strftime('%H%M%S') if order.created_at.present? %></attr>
       <!--Scheduled Performing Physician's Name-->
-      <attr tag="00400006" vr="PN">Radiologische Gemeinschaftspraxis im EVK Lippstadt</attr>
+      <attr tag="00400006" vr="PN"><%= order.scheduled_performing_physicians_name %></attr>
       <!--Scheduled Procedure Step Description-->
       <attr tag="00400007" vr="LO"><%= order.requested_procedure_description %></attr>
       <!--Scheduled Protocol Code Sequence-->

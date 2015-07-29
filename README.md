@@ -14,6 +14,8 @@
 - Install [foreman](https://github.com/ddollar/foreman)
 - Install Bundler with `sudo gem install bundler`
 - clone this repo and `cd` into it
+- IMPORTANT: Copy the sample configuration with `cp env.sample .env` and
+  change it (this includes things like AETitle, name of your hospital, etc.)
 - bootstrap with...
 
 ```console
