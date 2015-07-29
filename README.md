@@ -80,3 +80,5 @@ This is what I did to create accession numbers starting at 500.000:
 ## Copyright
 
 Copyright (c) 2015 Björn Albers
+
+Licensed unter the MIT License.
