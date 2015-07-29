@@ -81,4 +81,5 @@ This is what I did to create accession numbers starting at 500.000:
 
 Copyright (c) 2015 Björn Albers
 
-Licensed unter the MIT License.
+Mowoli is released under the
+[MIT License](https://github.com/bjoernalbers/mowoli/blob/master/LICENSE.txt).
