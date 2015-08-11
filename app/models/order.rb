@@ -7,7 +7,7 @@ class Order < ActiveRecord::Base
 
   belongs_to :station
 
-  attr_accessor :station_name, :scheduled_performing_physicians_name
+  attr_accessor :scheduled_performing_physicians_name
 
   after_initialize :set_default_scheduled_performing_physicians_name
 
@@ -41,8 +41,6 @@ class Order < ActiveRecord::Base
     format: { with: /\A[\d\.]+\Z/ }
 
   before_validation :set_study_instance_uid
-
-  before_validation :set_station
 
   after_create :create_worklist_file
   after_destroy :delete_worklist_file
@@ -85,11 +83,6 @@ class Order < ActiveRecord::Base
   def set_default_scheduled_performing_physicians_name
     self.scheduled_performing_physicians_name =
       ENV['SCHEDULED_PERFORMING_PHYSICIANS_NAME']
-  end
-
-  def set_station
-    self.station =
-      Station.find_by(name: @station_name) if @station_name.present?
   end
 
   def create_worklist_file

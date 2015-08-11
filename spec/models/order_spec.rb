@@ -47,29 +47,6 @@ RSpec.describe Order, type: :model do
     end
   end
 
-  describe '#station_name' do
-    let(:station) { create(:station) }
-    let(:order) { build(:order, station: nil) }
-
-    before do
-      allow(Station).to receive(:find_by).and_return(station)
-      order.station_name = 'Chunky Bacon'
-      order.valid?
-    end
-
-    it 'caches station name' do
-      expect(order.station_name).to eq 'Chunky Bacon'
-    end
-
-    it 'assigns station to order' do
-      expect(order.station).to eq station
-    end
-
-    it 'finds station by name' do
-      expect(Station).to have_received(:find_by).with(name: 'Chunky Bacon')
-    end
-  end
-
   describe '#accession_number' do
     it 'returns id as string' do
       order.id = 42
