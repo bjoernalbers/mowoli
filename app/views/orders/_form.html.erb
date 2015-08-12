@@ -12,48 +12,40 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :accession_number %><br>
-    <%= f.text_field :accession_number %>
-  </div>
-  <div class="field">
-    <%= f.label :referring_physicians_name %><br>
-    <%= f.text_field :referring_physicians_name %>
+    <%= f.label :patient_id %><br>
+    <%= f.text_field :patient_id %>
   </div>
   <div class="field">
     <%= f.label :patients_name %><br>
     <%= f.text_field :patients_name %>
   </div>
   <div class="field">
-    <%= f.label :patient_id %><br>
-    <%= f.text_field :patient_id %>
-  </div>
-  <div class="field">
     <%= f.label :patients_birth_date %><br>
-    <%= f.date_select :patients_birth_date %>
+    <%# f.date_select :patients_birth_date %>
+    <%= f.text_field :patients_birth_date %>
   </div>
   <div class="field">
-    <%= f.label :patients_sex %><br>
-    <%= f.text_field :patients_sex %>
-  </div>
-  <div class="field">
-    <%= f.label :study_instance_uid %><br>
-    <%= f.text_field :study_instance_uid %>
-  </div>
-  <div class="field">
-    <%= f.label :requesting_physicians_name %><br>
-    <%= f.text_field :requesting_physicians_name %>
+    <%= f.label(:patients_sex) %><br>
+    <%= f.radio_button(:patients_sex, 'M') %>
+    <%= f.label(:patients_sex, 'männlich', value: 'M') %>
+    <%= f.radio_button(:patients_sex, 'F') %>
+    <%= f.label(:patients_sex, 'weiblich', value: 'F') %>
   </div>
   <div class="field">
     <%= f.label :requested_procedure_description %><br>
     <%= f.text_field :requested_procedure_description %>
   </div>
   <div class="field">
-    <%= f.label :modality %><br>
-    <%= f.text_field :modality %>
+    <%= f.label :referring_physicians_name %><br>
+    <%= f.text_field :referring_physicians_name %>
   </div>
   <div class="field">
-    <%= f.label :scheduled_station_ae_title %><br>
-    <%= f.text_field :scheduled_station_ae_title %>
+    <%= f.label :requesting_physicians_name %><br>
+    <%= f.text_field :requesting_physicians_name %>
+  </div>
+  <div class="field">
+    <%= f.label :station_id %><br>
+    <%= f.select :station_id, Station.all.collect { |s| [ s.name, s.id ] }, {include_blank: true} %>
   </div>
   <div class="actions">
     <%= f.submit %>

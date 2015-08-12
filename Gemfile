@@ -48,6 +48,7 @@ group :development, :test do
   gem 'database_cleaner', '~> 1.3'
   gem 'factory_girl_rails', '~> 4.5'
   gem 'timecop', '~> 0.7'
+  gem 'byebug'
 end
 
 gem 'responders', '~> 2.0'
@@ -55,3 +56,5 @@ gem 'responders', '~> 2.0'
 gem 'rails_serve_static_assets'
 
 gem 'dotenv-rails'
+
+gem 'rails-i18n'

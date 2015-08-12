@@ -1,0 +1,18 @@
+de:
+  activerecord:
+    models:
+      order: 'Auftrag'
+    attributes:
+      order:
+        accession_number: 'Auftragsnummer'
+        patient_id: 'Patienten-ID'
+        patients_birth_date: 'Geburtsdatum des Patienten'
+        patients_name: 'Name des Patienten'
+        patients_sex: 'Geschlecht des Patienten'
+        referring_physicians_name: 'Name des überweisenden Arztes'
+        requested_procedure_description: 'Untersuchungsbeschreibung'
+        requesting_physicians_name: 'Name des anfordernden Arztes' # TODO: Delete!
+        #station_id: 'Gerät'
+  orders:
+    new:
+      title: 'Neuer Auftrag'
