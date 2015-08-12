@@ -23,11 +23,6 @@ curl --request POST 'http://localhost:5000/api/v1/orders' \
               "family":                         "House",
               "given":                          "Gregory",
               "prefix":                         "Dr."
-        },
-        "requesting_physicians_name_attributes": {
-              "family":                         "Volakis",
-              "given":                          "Amber",
-              "prefix":                         "Dr."
         }
     }
 }'

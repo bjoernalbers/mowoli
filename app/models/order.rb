@@ -26,7 +26,6 @@ class Order < ActiveRecord::Base
   # DICOM Value Representation: PN (Person Name)
   validates :patients_name,
     :referring_physicians_name,
-    :requesting_physicians_name,
     :scheduled_performing_physicians_name,
     presence: true, length: { maximum: 64 }
 
@@ -67,10 +66,6 @@ class Order < ActiveRecord::Base
 
   def referring_physicians_name_attributes=(attr)
     self.referring_physicians_name = PersonName.new(attr).to_s
-  end
-
-  def requesting_physicians_name_attributes=(attr)
-    self.requesting_physicians_name = PersonName.new(attr).to_s
   end
 
   private

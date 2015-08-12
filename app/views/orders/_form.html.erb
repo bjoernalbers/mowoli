@@ -40,10 +40,6 @@
     <%= f.text_field :referring_physicians_name %>
   </div>
   <div class="field">
-    <%= f.label :requesting_physicians_name %><br>
-    <%= f.text_field :requesting_physicians_name %>
-  </div>
-  <div class="field">
     <%= f.label :station_id %><br>
     <%= f.select :station_id, Station.all.collect { |s| [ s.name, s.id ] }, {include_blank: true} %>
   </div>

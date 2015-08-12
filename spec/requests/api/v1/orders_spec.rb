@@ -22,8 +22,7 @@ describe 'Orders APIv1' do
         p = { order: FactoryGirl.build(:order, patient_id: '23').attributes.compact }
         [
           :patients_name_attributes,
-          :referring_physicians_name_attributes,
-          :requesting_physicians_name_attributes
+          :referring_physicians_name_attributes
         ].each do |attr|
           p[:order][attr] = FactoryGirl.attributes_for(:person_name)
         end
@@ -83,8 +82,7 @@ describe 'Orders APIv1' do
         p = { order: FactoryGirl.build(:order).attributes.compact }
         [
           :patients_name_attributes,
-          :referring_physicians_name_attributes,
-          :requesting_physicians_name_attributes
+          :referring_physicians_name_attributes
         ].each do |attr|
           p[:order][attr] = FactoryGirl.attributes_for(:person_name)
         end

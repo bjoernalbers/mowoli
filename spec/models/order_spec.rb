@@ -222,30 +222,6 @@ RSpec.describe Order, type: :model do
     end
   end
 
-  describe '#requesting_physicians_name' do
-    it 'is required' do
-      order.requesting_physicians_name = nil
-      expect(order).not_to be_valid
-      expect{ order.save(validate: false) }.to raise_error
-    end
-
-    it 'contains max. 64 characters' do
-      order.requesting_physicians_name = '0' * 65
-      expect(order).not_to be_valid
-      order.requesting_physicians_name = '0' * 64
-      expect(order).to be_valid
-    end
-  end
-
-  describe '#requesting_physicians_name_attributes=' do
-    it 'assigns requesting_physicians_name' do
-      order.requesting_physicians_name = nil
-      order.requesting_physicians_name_attributes =
-        { family: 'Norris', given: 'Chuck', prefix: 'Mr.' }
-      expect(order.requesting_physicians_name).to eq 'Norris^Chuck^^Mr.'
-    end
-  end
-
   describe '#requested_procedure_description' do
     it 'is required' do
       order.requested_procedure_description = nil

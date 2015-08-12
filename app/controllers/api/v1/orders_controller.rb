@@ -48,8 +48,7 @@ module API
                  :requested_procedure_description,
                  :station_id,
                  patients_name_attributes:              PersonName.attributes,
-                 referring_physicians_name_attributes:  PersonName.attributes,
-                 requesting_physicians_name_attributes: PersonName.attributes)
+                 referring_physicians_name_attributes:  PersonName.attributes)
       end
     end
   end

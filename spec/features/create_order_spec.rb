@@ -16,7 +16,6 @@ feature 'Create orders' do
       choose 'männlich'
       fill_in 'Untersuchungsbeschreibung', with: 'Kniegelenk re.'
       fill_in 'Name des überweisenden Arztes', with: 'House^Gregory'
-      fill_in 'Name des anfordernden Arztes', with: 'Dr. No' # kann später gelöscht werden!
       select station.name, from: 'Station'
       click_button 'Auftrag erstellen'
     }.to change(Order, :count).by(1)

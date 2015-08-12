@@ -80,9 +80,9 @@ describe 'rendering order template' do
     expect(rendered).to include '<attr tag="0020000D" vr="UI">1.2.34.567</attr>'
   end
 
-  it 'includes "Requesting Physicians Name"' do
-    render_template_with(build(:order, requesting_physicians_name: 'Simpson^Bart'))
-    expect(rendered).to include '<attr tag="00321032" vr="PN">Simpson^Bart</attr>'
+  it 'includes referring physicians name as "Requesting Physicians Name"' do
+    render_template_with(build(:order, referring_physicians_name: 'Simpson^Homer'))
+    expect(rendered).to include '<attr tag="00321032" vr="PN">Simpson^Homer</attr>'
   end
 
   it 'includes "Requested Procedure Description"' do
