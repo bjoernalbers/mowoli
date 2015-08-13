@@ -10,16 +10,27 @@ feature 'Create orders' do
     visit '/orders/new'
     
     expect {
-      fill_in 'Patienten-ID', with: '42'
-      fill_in 'Name des Patienten', with: 'Norris^Chuck'
-      fill_in 'Geburtsdatum des Patienten', with: '10.3.1940'
-      choose 'männlich'
-      fill_in 'Untersuchungsbeschreibung', with: 'Kniegelenk re.'
-      fill_in 'Name des überweisenden Arztes', with: 'House^Gregory'
-      select station.name, from: 'Station'
+      within_fieldset 'Patient' do
+        fill_in 'Patienten-ID', with: '42'
+        fill_in 'Vorname', with: 'Chuck'
+        fill_in 'Nachname', with: 'Norris'
+        fill_in 'Titel', with: 'Mr.'
+        fill_in 'Geburtsdatum', with: '10.3.1940'
+        choose 'männlich'
+      end
+      within_fieldset 'Überweisender Arzt' do
+        fill_in 'Vorname', with: 'Gregory'
+        fill_in 'Nachname', with: 'House'
+        fill_in 'Titel', with: 'MD'
+      end
+      within_fieldset 'Untersuchung' do
+        fill_in 'Untersuchungsbeschreibung', with: 'Kniegelenk re.'
+        select station.name, from: 'Station'
+      end
       click_button 'Auftrag erstellen'
     }.to change(Order, :count).by(1)
-    expect(page).to have_content('Norris')
+    expect(page).to have_content('Norris^Chuck^^Mr.')
+    expect(page).to have_content('House^Gregory^^MD')
   end
 
   after do

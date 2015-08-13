@@ -30,8 +30,16 @@ RSpec.describe OrdersController, type: :controller do
     end
 
     context 'with valid attributes' do
-      let(:order_params) { build(:order).attributes.symbolize_keys.
-        reject { |k,v| [:id, :created_at, :updated_at].include? k } }
+      let(:order_params) do
+        p = build(:order).attributes.symbolize_keys.
+          reject { |k,v| [:id, :created_at, :updated_at].include? k }
+        [
+          :patients_name_attributes,
+          :referring_physicians_name_attributes
+        ].each { |attr| p[attr] = FactoryGirl.attributes_for(:person_name) }
+        p
+      end
+
 
       it 'creates order' do
         expect{ do_post }.to change(Order, :count).by(1)

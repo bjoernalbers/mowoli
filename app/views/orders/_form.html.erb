@@ -11,38 +11,74 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :patient_id %><br>
-    <%= f.text_field :patient_id %>
-  </div>
-  <div class="field">
-    <%= f.label :patients_name %><br>
-    <%= f.text_field :patients_name %>
-  </div>
-  <div class="field">
-    <%= f.label :patients_birth_date %><br>
-    <%# f.date_select :patients_birth_date %>
-    <%= f.text_field :patients_birth_date %>
-  </div>
-  <div class="field">
-    <%= f.label(:patients_sex) %><br>
-    <%= f.radio_button(:patients_sex, 'M') %>
-    <%= f.label(:patients_sex, 'männlich', value: 'M') %>
-    <%= f.radio_button(:patients_sex, 'F') %>
-    <%= f.label(:patients_sex, 'weiblich', value: 'F') %>
-  </div>
-  <div class="field">
-    <%= f.label :requested_procedure_description %><br>
-    <%= f.text_field :requested_procedure_description %>
-  </div>
-  <div class="field">
-    <%= f.label :referring_physicians_name %><br>
-    <%= f.text_field :referring_physicians_name %>
-  </div>
-  <div class="field">
-    <%= f.label :station_id %><br>
-    <%= f.select :station_id, Station.all.collect { |s| [ s.name, s.id ] }, {include_blank: true} %>
-  </div>
+  <%= f.fields_for(:patients_name_attributes) do |name| %>
+    <%= field_set_tag 'Patient' do %>
+      <div class="field">
+        <%= f.label :patient_id %><br>
+        <%= f.text_field :patient_id %>
+      </div>
+
+      <div class="field">
+        <%= name.label :family, 'Nachname' %><br>
+        <%= name.text_field :family %>
+      </div>
+
+      <div class="field">
+        <%= name.label :given, 'Vorname' %><br>
+        <%= name.text_field :given %>
+      </div>
+
+      <div class="field">
+        <%= name.label :prefix, 'Titel' %><br>
+        <%= name.text_field :prefix %>
+      </div>
+
+      <div class="field">
+        <%= f.label :patients_birth_date %><br>
+        <%= f.text_field :patients_birth_date %>
+      </div>
+
+      <div class="field">
+        <%= f.label(:patients_sex) %><br>
+        <%= f.radio_button(:patients_sex, 'M') %>
+        <%= f.label(:patients_sex, 'männlich', value: 'M') %>
+        <%= f.radio_button(:patients_sex, 'F') %>
+        <%= f.label(:patients_sex, 'weiblich', value: 'F') %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%= f.fields_for(:referring_physicians_name_attributes) do |name| %>
+    <%= field_set_tag 'Überweisender Arzt' do %>
+      <div class="field">
+        <%= name.label :family, 'Nachname' %><br>
+        <%= name.text_field :family %>
+      </div>
+
+      <div class="field">
+        <%= name.label :given, 'Vorname' %><br>
+        <%= name.text_field :given %>
+      </div>
+
+      <div class="field">
+        <%= name.label :prefix, 'Titel' %><br>
+        <%= name.text_field :prefix %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%= field_set_tag 'Untersuchung' do %>
+    <div class="field">
+      <%= f.label :requested_procedure_description %><br>
+      <%= f.text_field :requested_procedure_description %>
+    </div>
+
+    <div class="field">
+      <%= f.label :station_id %><br>
+      <%= f.select :station_id, Station.all.collect { |s| [ s.name, s.id ] }, {include_blank: true} %>
+    </div>
+  <% end %>
+
   <div class="actions">
     <%= f.submit %>
   </div>
