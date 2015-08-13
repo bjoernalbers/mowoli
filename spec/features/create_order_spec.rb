@@ -31,6 +31,9 @@ feature 'Create orders' do
     }.to change(Order, :count).by(1)
     expect(page).to have_content('Norris^Chuck^^Mr.')
     expect(page).to have_content('House^Gregory^^MD')
+
+    order = Order.find_by(patients_name: 'Norris^Chuck^^Mr.')
+    expect(order.patient_id).to match /^MOWOLI-\d+$/
   end
 
   after do

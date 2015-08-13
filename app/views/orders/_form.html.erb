@@ -1,8 +1,7 @@
 <%= form_for(@order) do |f| %>
   <% if @order.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
-
+      <h2>Hoppla! Da sind <%= pluralize(@order.errors.count, "Fehler") %> aufgetreten:</h2>
       <ul>
       <% @order.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -13,11 +12,6 @@
 
   <%= f.fields_for(:patients_name_attributes) do |name| %>
     <%= field_set_tag 'Patient' do %>
-      <div class="field">
-        <%= f.label :patient_id %><br>
-        <%= f.text_field :patient_id %>
-      </div>
-
       <div class="field">
         <%= name.label :family, 'Nachname' %><br>
         <%= name.text_field :family %>

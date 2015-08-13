@@ -32,7 +32,7 @@ RSpec.describe OrdersController, type: :controller do
     context 'with valid attributes' do
       let(:order_params) do
         p = build(:order).attributes.symbolize_keys.
-          reject { |k,v| [:id, :created_at, :updated_at].include? k }
+          reject { |k,v| [:id, :created_at, :updated_at, :patient_id].include? k }
         [
           :patients_name_attributes,
           :referring_physicians_name_attributes
@@ -54,6 +54,8 @@ RSpec.describe OrdersController, type: :controller do
         do_post
         expect(response).to redirect_to order_path(assigns(:order))
       end
+
+      it 'assigns random patient_id'
     end
 
     context 'with invalid attributes' do

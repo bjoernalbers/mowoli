@@ -9,6 +9,10 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
+
+    # TODO: Fix this hack!
+    @order.patient_id = "MOWOLI-#{SecureRandom.random_number(1_000_000)}"
+
     if @order.save
       redirect_to @order
     else
@@ -24,8 +28,7 @@ class OrdersController < ApplicationController
 
   def order_params
     params.require(:order).
-      permit(:patient_id,
-             :patients_birth_date,
+      permit(:patients_birth_date,
              :patients_sex,
              :requested_procedure_description,
              :station_id,
