@@ -11,7 +11,6 @@ feature 'Create orders' do
     
     expect {
       within_fieldset 'Patient' do
-        fill_in 'Patienten-ID', with: '42'
         fill_in 'Vorname', with: 'Chuck'
         fill_in 'Nachname', with: 'Norris'
         fill_in 'Titel', with: 'Mr.'
