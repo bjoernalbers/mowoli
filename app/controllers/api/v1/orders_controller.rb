@@ -41,7 +41,7 @@ module API
       private
 
       def order_params
-        params.require(:order).
+        p = params.require(:order).
           permit(:patient_id,
                  :patients_birth_date,
                  :patients_sex,
@@ -49,6 +49,17 @@ module API
                  :station_id,
                  patients_name_attributes:              PersonName.attributes,
                  referring_physicians_name_attributes:  PersonName.attributes)
+        # TODO: Remove when Tomedo gets a fix!
+        coder = HTMLEntities.new
+        [ :patients_name_attributes,
+          :referring_physicians_name_attributes ].each do |name|
+          if p[name]
+            p[name].each_pair do |k,v|
+              p[name][k] = coder.decode(v) if v.present?
+            end
+          end
+        end
+        p
       end
     end
   end

@@ -76,6 +76,49 @@ describe 'Orders APIv1' do
       post '/api/v1/orders', params, headers
     end
 
+    context 'with HTML-escaped params' do
+      let!(:station) { FactoryGirl.create(:station) }
+      let(:params) do
+        p = { order: FactoryGirl.build(:order).attributes.compact }
+        [
+          :patients_name_attributes,
+          :referring_physicians_name_attributes
+        ].each do |attr|
+          p[:order][attr] = FactoryGirl.attributes_for(:person_name)
+        end
+        p[:order][:patients_name_attributes][:family] = "D&#x27;Angelo"
+        p[:order][:referring_physicians_name_attributes][:given] = "D&#x27;Angelo"
+        p
+      end
+
+      it 'decodes params' do
+        do_post
+        order = assigns(:order)
+        expect(order.patients_name).to match /D'Angelo/
+        expect(order.referring_physicians_name).to match /D'Angelo/
+      end
+
+      it 'returns HTTP status 201' do
+        do_post
+        expect(response.status).to eq 201
+      end
+
+      it 'sets location header' do
+        do_post
+        expect(response.location).to eq api_v1_order_url(Order.last)
+      end
+
+      it 'returns order in JSON' do
+        do_post
+        expect(response.content_type).to be_json
+        expect(response).to render_template(:show)
+      end
+
+      it 'creates order' do
+        expect{ do_post }.to change(Order, :count).by(1)
+      end
+    end
+
     context 'with valid params' do
       let!(:station) { FactoryGirl.create(:station) }
       let(:params) do

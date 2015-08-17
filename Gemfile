@@ -60,3 +60,6 @@ gem 'rails_serve_static_assets'
 gem 'dotenv-rails'
 
 gem 'rails-i18n'
+
+# TODO: Remove when Tomedo gets fixed!
+gem 'htmlentities', '~> 4.3'
