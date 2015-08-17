@@ -1,7 +1,7 @@
-<%= form_for(@order) do |f| %>
+<%= form_for(@order, html: { class: 'form-horizontal' }) do |f| %>
   <% if @order.errors.any? %>
     <div id="error_explanation">
-      <h2>Hoppla! Da sind <%= pluralize(@order.errors.count, "Fehler") %> aufgetreten:</h2>
+      <h2>Hoppla! Es sind <%= @order.errors.count %> Fehler aufgetreten:</h2>
       <ul>
       <% @order.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -12,68 +12,88 @@
 
   <%= f.fields_for(:patients_name_attributes) do |name| %>
     <%= field_set_tag 'Patient' do %>
-      <div class="field">
-        <%= name.label :family, 'Nachname' %><br>
-        <%= name.text_field :family %>
+      <div class="form-group">
+        <%= name.label :family, 'Nachname', class: 'control-label col-md-2' %>
+        <div class='col-md-6'>
+          <%= name.text_field :family, class: 'form-control' %>
+        </div>
       </div>
 
-      <div class="field">
-        <%= name.label :given, 'Vorname' %><br>
-        <%= name.text_field :given %>
+      <div class="form-group">
+        <%= name.label :given, 'Vorname', class: 'control-label col-md-2' %>
+        <div class='col-md-6'>
+          <%= name.text_field :given, class: 'form-control' %>
+        </div>
       </div>
 
-      <div class="field">
-        <%= name.label :prefix, 'Titel' %><br>
-        <%= name.text_field :prefix %>
+      <div class="form-group">
+        <%= name.label :prefix, 'Titel', class: 'control-label col-md-2' %>
+        <div class='col-md-6'>
+          <%= name.text_field :prefix, class: 'form-control' %>
+        </div>
       </div>
 
-      <div class="field">
-        <%= f.label :patients_birth_date %><br>
-        <%= f.text_field :patients_birth_date %>
+      <div class="form-group">
+        <%= f.label :patients_birth_date, class: 'control-label col-md-2' %>
+        <div class='col-md-2'>
+          <%= f.text_field :patients_birth_date, class: 'form-control', placeholder: 'TT.MM.JJJJ' %>
+        </div>
       </div>
 
-      <div class="field">
-        <%= f.label(:patients_sex) %><br>
-        <%= f.radio_button(:patients_sex, 'M') %>
-        <%= f.label(:patients_sex, 'männlich', value: 'M') %>
-        <%= f.radio_button(:patients_sex, 'F') %>
-        <%= f.label(:patients_sex, 'weiblich', value: 'F') %>
+      <div class="form-group">
+        <%= f.label :patients_sex, class: 'control-label col-md-2' %><br>
+        <div class='col-md-6'>
+          <%= f.radio_button :patients_sex, 'M', class: 'form-control' %>
+          <%= f.label :patients_sex, 'männlich', value: 'M', class: 'control-label' %>
+          <%= f.radio_button :patients_sex, 'F', class: 'form-control' %>
+          <%= f.label :patients_sex, 'weiblich', value: 'F', class: 'control-label' %>
+        </div>
       </div>
     <% end %>
   <% end %>
 
   <%= f.fields_for(:referring_physicians_name_attributes) do |name| %>
     <%= field_set_tag 'Überweisender Arzt' do %>
-      <div class="field">
-        <%= name.label :family, 'Nachname' %><br>
-        <%= name.text_field :family %>
+      <div class="form-group">
+        <%= name.label :family, 'Nachname', class: 'control-label col-md-2' %>
+        <div class='col-md-6'>
+          <%= name.text_field :family, class: 'form-control' %>
+        </div>
       </div>
 
-      <div class="field">
-        <%= name.label :given, 'Vorname' %><br>
-        <%= name.text_field :given %>
+      <div class="form-group">
+        <%= name.label :given, 'Vorname', class: 'control-label col-md-2' %>
+        <div class='col-md-6'>
+          <%= name.text_field :given, class: 'form-control' %>
+        </div>
       </div>
 
-      <div class="field">
-        <%= name.label :prefix, 'Titel' %><br>
-        <%= name.text_field :prefix %>
+      <div class="form-group">
+        <%= name.label :prefix, 'Titel', class: 'control-label col-md-2' %>
+        <div class='col-md-6'>
+          <%= name.text_field :prefix, class: 'form-control' %>
+        </div>
       </div>
     <% end %>
   <% end %>
 
   <%= field_set_tag 'Untersuchung' do %>
-    <div class="field">
-      <%= f.label :requested_procedure_description %><br>
-      <%= f.text_field :requested_procedure_description %>
+    <div class="form-group">
+      <%= f.label :requested_procedure_description, class: 'control-label col-md-2' %>
+      <div class='col-md-6'>
+        <%= f.text_field :requested_procedure_description, class: 'form-control' %>
+      </div>
     </div>
 
-    <div class="field">
-      <%= f.label :station_id %><br>
-      <%= f.select :station_id, Station.all.collect { |s| [ s.name, s.id ] }, {include_blank: true} %>
+    <div class="form-group">
+      <%= f.label :station_id, class: 'control-label col-md-2' %>
+      <div class='col-md-2'>
+        <%= f.select :station_id, Station.all.collect { |s| [ s.name, s.id ] }, {include_blank: true}, class: 'form-control' %>
+      </div>
     </div>
   <% end %>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit nil, class: 'btn btn-primary' %>
   </div>
 <% end %>
