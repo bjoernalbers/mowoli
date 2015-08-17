@@ -57,14 +57,14 @@
       <div class="form-group">
         <%= name.label :family, 'Nachname', class: 'control-label col-md-2' %>
         <div class='col-md-6'>
-          <%= name.text_field :family, class: 'form-control' %>
+          <%= name.text_field :family, class: 'form-control', placeholder: 'Nachname des Arztes oder Name des Krankenhauses / der Praxis' %>
         </div>
       </div>
 
       <div class="form-group">
         <%= name.label :given, 'Vorname', class: 'control-label col-md-2' %>
         <div class='col-md-6'>
-          <%= name.text_field :given, class: 'form-control' %>
+          <%= name.text_field :given, class: 'form-control', placeholder: 'Vorname des Arztes oder Stationsname' %>
         </div>
       </div>
 
