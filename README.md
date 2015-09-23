@@ -1,34 +1,57 @@
 # Mowoli - DICOM Modality Worklist with HTTP API
 
-**NOTE: This is prototype stuff!**
+Mowoli is a Rails application to provide a modality worklist for a radiology.
+In other terms: I sends study and patient data to modalities / stations in a
+radiology which is a lot less error-prone that typing everything twice.
 
 
-## Quickstart
+## Development
 
-- Install DCM4CHE 2
-
-- Download and unpack the
-  [latest version of *dcm4che2*](http://sourceforge.net/projects/dcm4che/files/dcm4che2/)
-  into */usr/local* and create a symlink (i.e. `cd /usr/local && ln -s dcm4che-2.0.28 dcm4che`)
-- Install XCode along with Command Line Developer Tools
-- Install [foreman](https://github.com/ddollar/foreman)
-- Install Bundler with `sudo gem install bundler`
-- clone this repo and `cd` into it
-- IMPORTANT: Copy the sample configuration with `cp env.sample .env` and
-  change it (this includes things like AETitle, name of your hospital, etc.)
-- bootstrap with...
+Clone this repo locally and run the bootstrap script (you might need
+to install *XCode* with *Command Line Developer Tools* first):
 
 ```console
-bundle install
-bin/rake db:create db:schema:load
+git clone https://github.com/bjoernalbers/mowoli.git
+cd mowoli && bin/setup
+```
+  
+From here on you can start playing with the HTTP UI & API:
+
+````console
+bin/rails server
+```
+
+### ...with DICOM
+
+You wanna get fancy by also running the "DICOM" part? Nice.
+This requires a bit more work:
+
+1. Download and unpack the
+  [latest version of *dcm4che2*](http://sourceforge.net/projects/dcm4che/files/dcm4che2/)
+  into */usr/local* and create a symlink (i.e. `cd /usr/local && ln -s dcm4che-2.0.28 dcm4che`)
+2. Install [foreman](https://github.com/ddollar/foreman)
+3. Tweak your configuration file (`.env`) if you want / need to change the TCP
+   port, installed dcm4che somewhere else, etc.
+
+Then bring up the whole beast with...
+
+```
 foreman start
 ```
+
+This will start the webserver (make sure you're not also running `bin/rails
+server`) and the "worklist-daemon" a.k.a. `dcmof`.
+Thats it :-)
+
+
+## Usage
 
 Create some stations via the [web UI](http://localhost:5000/stations)
 and then you're ready to create some worklist orders by HTTP POSTs.
 Please check the examples folder.
 
 Orders are visible over the [web UI](http://localhost:5000/orders) as well.
+
 
 ## Worklist Attributes
 
