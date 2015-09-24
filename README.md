@@ -37,17 +37,8 @@ So if you need DICOM you have to install dcm4che first:
 1. Download and unpack the
   [latest version of *dcm4che2*](http://sourceforge.net/projects/dcm4che/files/dcm4che2/)
 2. Copy the unziped folder to `/usr/local/`
-3. Create a symlink for convenience, for example (you version may vary):
-
-```
-$ cd /usr/local && ln -s dcm4che-2.0.28 dcm4che
-```
-
-4. Create the *worklist directory* which holds all orders in xml format:
-
-```
-$ mkdir -p /usr/local/dcm4che/var/dcmof
-```
+3. Create a symlink for convenience, for example `cd /usr/local && ln -s dcm4che-2.0.28 dcm4che`
+4. Create the *worklist directory* which holds all orders in xml format `mkdir -p /usr/local/dcm4che/var/dcmof`
 
 For a quick test you could start `dcmof` and make some queries with your station:
 
