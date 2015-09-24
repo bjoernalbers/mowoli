@@ -1,13 +1,15 @@
 # Mowoli - DICOM Modality Worklist with HTTP API
 
-Mowoli is a Rails application to provide a modality worklist for a radiology.
-In other terms: I sends study and patient data to modalities / stations in a
-radiology which is a lot less error-prone that typing everything twice.
+Mowoli is a gateway between modalities (i.e. MRI or CT stations) and Radiology
+Informations Systems:
+It allows systems that don't "talk" DICOM to send patient data simply over HTTP
+and provides it via DICOM for modalities.
+Mowoli just sits in between and does the "translation".
 
 
-## Development
+## Getting started
 
-Clone this repo locally and run the bootstrap script (you might need
+Clone this repository and run the setup script (you might need
 to install *XCode* with *Command Line Developer Tools* first):
 
 ```console
@@ -21,16 +23,37 @@ From here on you can start playing with the HTTP UI & API:
 bin/rails server
 ```
 
-### ...with DICOM
+Next [create some stations](http://localhost:3000/stations) in Mowoli's database
+and then you're ready to send patient / study data (we call them *orders*) by HTTP.
+Please check the examples folder on how to do that.
+[Take a look](http://localhost:3000/orders) to see all orders.
 
-You wanna get fancy by also running the "DICOM" part? Nice.
-This requires a bit more work:
+
+## DICOM
+
+Mowoli uses [dcm4che](http://www.dcm4che.org) to provide orders via DICOM.
+So if you need DICOM you have to install dcm4che first:
 
 1. Download and unpack the
   [latest version of *dcm4che2*](http://sourceforge.net/projects/dcm4che/files/dcm4che2/)
-  into */usr/local* and create a symlink (i.e. `cd /usr/local && ln -s dcm4che-2.0.28 dcm4che`)
-2. Install [foreman](https://github.com/ddollar/foreman)
-3. Tweak your configuration file (`.env`) if you want / need to change the TCP
+2. Copy the unziped folder to `/usr/local/`
+3. Create a symlink for convenience, for example (you version may vary):
+
+    $ cd /usr/local && ln -s dcm4che-2.0.28 dcm4che
+
+4. Create the *worklist directory* which holds all orders in xml format:
+
+    $ mkdir -p /usr/local/dcm4che/var/dcmof
+
+For a quick test you could start `dcmof` and make some queries with your station:
+
+    $ /usr/local/dcm4che/bin/dcmof --mwl /usr/local/dcm4che/var/dcmof MOWOLI:11112
+
+
+## Development
+
+1. Install [foreman](https://github.com/ddollar/foreman)
+2. Tweak your configuration file (`.env`) if you want / need to change the TCP
    port, installed dcm4che somewhere else, etc.
 
 Then bring up the whole beast with...
@@ -44,13 +67,15 @@ server`) and the "worklist-daemon" a.k.a. `dcmof`.
 Thats it :-)
 
 
-## Usage
+## Production
 
-Create some stations via the [web UI](http://localhost:5000/stations)
-and then you're ready to create some worklist orders by HTTP POSTs.
-Please check the examples folder.
+Deployment is done via Capistrano. Copy and edit the sample configuration inside `config/deploy`.
+Then run
 
-Orders are visible over the [web UI](http://localhost:5000/orders) as well.
+    $ bundle exec cap production deploy
+
+Done.
+To update just `git pull` the updates and run the above command again.
 
 
 ## Worklist Attributes
@@ -71,11 +96,6 @@ The *org root* is "1.2.826.0.1.3680043.9.5265."
 for their
 [FREE UID](https://www.medicalconnections.co.uk/Free_UID)
 service!).
-
-
-## Deployment in Production
-
-Deployment is done via Capistrano. Details will follow...
 
 
 ## Change start value for accession numbers
