@@ -19,7 +19,7 @@ cd mowoli && bin/setup
   
 From here on you can start playing with the HTTP UI & API:
 
-````console
+```console
 bin/rails server
 ```
 
@@ -39,15 +39,21 @@ So if you need DICOM you have to install dcm4che first:
 2. Copy the unziped folder to `/usr/local/`
 3. Create a symlink for convenience, for example (you version may vary):
 
-    $ cd /usr/local && ln -s dcm4che-2.0.28 dcm4che
+```
+$ cd /usr/local && ln -s dcm4che-2.0.28 dcm4che
+```
 
 4. Create the *worklist directory* which holds all orders in xml format:
 
-    $ mkdir -p /usr/local/dcm4che/var/dcmof
+```
+$ mkdir -p /usr/local/dcm4che/var/dcmof
+```
 
 For a quick test you could start `dcmof` and make some queries with your station:
 
-    $ /usr/local/dcm4che/bin/dcmof --mwl /usr/local/dcm4che/var/dcmof MOWOLI:11112
+```
+$ /usr/local/dcm4che/bin/dcmof --mwl /usr/local/dcm4che/var/dcmof MOWOLI:11112
+```
 
 
 ## Development
