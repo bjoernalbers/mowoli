@@ -12,6 +12,15 @@ RSpec.describe Station, type: :model do
     expect(station.orders).to match_array [order]
   end
 
+  context 'when destroyed' do
+    let(:station) { create(:station) }
+
+    it 'deletes depenend orders' do
+      order = create(:order, station: station)
+      expect{ station.destroy }.to change(Order, :count).by(-1)
+    end
+  end
+
   describe '#name' do
     it 'must be present' do
       station = build(:station, name: nil)
