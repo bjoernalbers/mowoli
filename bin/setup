@@ -6,8 +6,8 @@ APP_ROOT = Pathname.new File.expand_path('../../',  __FILE__)
 
 Dir.chdir APP_ROOT do
   puts "== Installing dependencies =="
-  system 'gem install bundler --conservative'
-  system 'bundle check || bundle install'
+  system 'sudo gem install bundler --conservative'
+  system 'bundle check || bundle install --path vendor'
 
   puts "\n== Copying sample files =="
   system 'cp env.sample .env' unless File.exist?('.env')
