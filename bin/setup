@@ -11,6 +11,7 @@ Dir.chdir APP_ROOT do
 
   puts "\n== Copying sample files =="
   system 'cp env.sample .env' unless File.exist?('.env')
+  system 'cp config/database.yml.sample config/database.yml' unless File.exist?('config/database.yml')
   # TODO: Copy deployment sample!
 
   puts "\n== Preparing database =="

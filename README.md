@@ -66,13 +66,25 @@ Thats it :-)
 
 ## Production
 
-Deployment is done via Capistrano. Copy and edit the sample configuration inside `config/deploy`.
-Then run
+I suggest you deploy to Mac OS X 10.9 or later.
+To do that you create a deployment configuration `config/production.rb`, i.e. with this content:
+
+```Ruby
+set :rails_env, 'production' 
+set :user, 'admin' # You might need to change the username
+server '192.168.1.42', # ...and the target host!
+  user: fetch(:user),
+  roles: %w(web app db)
+```
+
+Then run this command on your workstation to deploy the app on your target host:
 
     $ bundle exec cap production deploy
 
 Done.
 To update just `git pull` the updates and run the above command again.
+
+NOTE: On the server side you have to setup DICOM manually (see above).
 
 
 ## Worklist Attributes

@@ -2,7 +2,6 @@
 lock '3.3.5'
 
 set :application, 'mowoli'
-set :deploy_user, 'rgp'
 set :repo_url, 'git@github.com:bjoernalbers/mowoli.git'
 
 # Default branch is :master
@@ -10,6 +9,7 @@ set :repo_url, 'git@github.com:bjoernalbers/mowoli.git'
 
 # Default deploy_to directory is /var/www/my_app_name
 # set :deploy_to, '/var/www/my_app_name'
+set :deploy_to, ->{ File.join('/Users', fetch(:user), fetch(:application)) }
 
 # Default value for :scm is :git
 # set :scm, :git
@@ -41,6 +41,29 @@ set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', '
 set :services, %w(app)
 
 namespace :deploy do
+  namespace :check do
+    # This stuff here is only used for the first deployment (a.k.a. "cold
+    # start") in order to get the beast running.
+    # We just have to make sure that the linked files do exist.
+    task :linked_files => %w(config/database.yml config/secrets.yml db/production.sqlite3 .env)
+
+    remote_file 'config/database.yml' => 'config/database.yml.sample', roles: :app
+    remote_file '.env' => 'env.sample', roles: :app
+
+    # NOTE: The local file (second argument) must have a different path or we'd
+    # get circular dependency errors.
+    # Therefore we use a './' prefix here.
+    remote_file 'config/secrets.yml' => './config/secrets.yml', roles: :app
+    remote_file 'db/production.sqlite3' => './db/production.sqlite3', roles: :db
+
+    file './db/production.sqlite3' do
+      unless identical? 'config/database.yml', 'config/database.yml.sample'
+        fail 'No, we do not setup a production database when config/database.yml was changed!'
+      end
+      sh 'RAILS_ENV=production bin/rake db:setup'
+    end
+  end
+
   desc 'Restart application'
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do

@@ -19,6 +19,8 @@
 # Site-specific deployment config
 /config/deploy
 
+/config/database.yml
+
 # Custom application config (foreman)
 /.env
 
