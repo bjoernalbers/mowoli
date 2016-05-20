@@ -61,3 +61,5 @@ gem 'rails-i18n'
 
 # TODO: Remove when Tomedo gets fixed!
 gem 'htmlentities', '~> 4.3'
+
+gem 'active_attr'

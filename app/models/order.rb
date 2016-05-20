@@ -68,6 +68,10 @@ class Order < ActiveRecord::Base
     self.referring_physicians_name = PersonName.new(attr).to_s
   end
 
+  def to_hl7
+    ORM.new(self).to_hl7
+  end
+
   private
 
   def set_study_instance_uid

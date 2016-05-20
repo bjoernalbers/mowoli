@@ -319,4 +319,20 @@ RSpec.describe Order, type: :model do
       expect(Order).to exist(order.id)
     end
   end
+
+  describe '#to_hl7' do
+    let(:orm) { double('ORM', to_hl7: 'some fancy hl7') }
+    before do
+      allow(ORM).to receive(:new).and_return(orm)
+    end
+
+    it 'initializes HL7 ORM message with self' do
+      subject.to_hl7
+      expect(ORM).to have_received(:new).with(subject)
+    end
+
+    it 'exports HL7 ORM message' do
+      expect(subject.to_hl7).to eq 'some fancy hl7'
+    end
+  end
 end
