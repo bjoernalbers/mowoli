@@ -6,8 +6,8 @@ describe MSH do
 
   it 'includes all fields' do
     expect(subject.field_names).to eq [
-      :sending_application,
       :encoding_characters,
+      :sending_application,
       :sending_facility,
       :receiving_application,
       :receiving_facility,

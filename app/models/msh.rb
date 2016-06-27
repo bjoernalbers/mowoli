@@ -1,8 +1,8 @@
 class MSH < Segment
   # NOTE: HL7 specifies the "Field Separator" on MSH segment as first field.
   # But actually it is NOT a field, so we don't define it as such.
-  field :sending_application, default: 'Mowoli'
   field :encoding_characters, default: '^~\&'
+  field :sending_application, default: 'Mowoli'
   field :sending_facility
   field :receiving_application
   field :receiving_facility
