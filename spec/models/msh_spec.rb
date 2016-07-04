@@ -53,6 +53,17 @@ describe MSH do
     end
   end
 
+  describe '#message_control_id' do
+    it 'has by default a length of 20' do
+      expect(subject.message_control_id.length).to eq 20
+    end
+
+    it 'has by default a random string' do
+      other = described_class.new
+      expect(subject.message_control_id).not_to eq(other.message_control_id)
+    end
+  end
+
   describe '#version_id' do
     it 'has default' do
       expect(subject.version_id).to eq '2.3'

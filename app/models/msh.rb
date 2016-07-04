@@ -9,7 +9,7 @@ class MSH < Segment
   field :datetime_of_message, type: DateTime
   field :security
   field :message_type, default: 'ORM^O01^ORM_O01'
-  field :message_control_id
+  field :message_control_id, default: ->{ SecureRandom.hex(10) }
   field :processing_id
   field :version_id, default: '2.3'
   field :sequence_number
