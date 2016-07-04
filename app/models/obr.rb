@@ -20,7 +20,7 @@ class OBR < Segment
   field :placer_field_1
   field :placer_field_2
   field :filler_field_1
-  field :filler_field_2
+  field :filler_field_2, default: 'DL1'
   field :result_status_change_datetime, type: DateTime
   field :charge_to_practice
   field :diagnostic_serv_sect_id

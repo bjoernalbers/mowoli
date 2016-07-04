@@ -69,9 +69,9 @@ describe OBR do
     it { should have_attribute(attribute).of_type(DateTime) }
   end
 
-  #describe '#encoding_characters' do
-    #it 'has default' do
-      #expect(subject.encoding_characters).to eq '^~\&'
-    #end
-  #end
+  describe '#filler_field_2' do
+    it 'has default' do
+      expect(subject.filler_field_2).to eq 'DL1'
+    end
+  end
 end
