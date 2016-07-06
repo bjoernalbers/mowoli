@@ -1,16 +1,16 @@
-class WorklistFile
+class XMLExport
   attr_reader :order
 
   def initialize(order)
     @order = order
   end
 
-  # Creates worklist file.
+  # Create XML order.
   def create
     File.open(path, 'w') { |f| f.puts content }
   end
 
-  # Deletes worklist file.
+  # Delete XML order.
   def delete
     FileUtils.rm(path) if created?
   end

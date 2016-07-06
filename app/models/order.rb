@@ -41,8 +41,8 @@ class Order < ActiveRecord::Base
 
   before_validation :set_study_instance_uid
 
-  after_create :create_worklist_file
-  after_destroy :delete_worklist_file
+  after_create :create_xml_export
+  after_destroy :delete_xml_export
 
   def self.purge_expired
     where('created_at < ?', Time.zone.now.beginning_of_day).destroy_all
@@ -84,11 +84,11 @@ class Order < ActiveRecord::Base
       ENV['SCHEDULED_PERFORMING_PHYSICIANS_NAME']
   end
 
-  def create_worklist_file
-    WorklistFile.new(self).create
+  def create_xml_export
+    XMLExport.new(self).create
   end
 
-  def delete_worklist_file
-    WorklistFile.new(self).delete
+  def delete_xml_export
+    XMLExport.new(self).delete
   end
 end

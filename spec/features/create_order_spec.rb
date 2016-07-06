@@ -36,7 +36,7 @@ feature 'Create orders' do
   end
 
   after do
-    # Clean up worklist files.
+    # Remove all exports by destroying their orders.
     Order.destroy_all
   end
 end

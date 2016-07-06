@@ -8,33 +8,33 @@ RSpec.describe Order, type: :model do
   end
 
   context 'on create' do
-    it 'creates worklist file' do
-      worklist_file = double('worklist_file')
-      allow(WorklistFile).to receive(:new).and_return(worklist_file)
-      allow(worklist_file).to receive(:create)
+    it 'creates XML export' do
+      xml_export = double('xml_export')
+      allow(XMLExport).to receive(:new).and_return(xml_export)
+      allow(xml_export).to receive(:create)
 
       order = FactoryGirl.create(:order)
 
-      expect(WorklistFile).to have_received(:new).with(order)
-      expect(worklist_file).to have_received(:create)
+      expect(XMLExport).to have_received(:new).with(order)
+      expect(xml_export).to have_received(:create)
     end
   end
 
   context 'on destroy' do
-    it 'creates worklist file' do
-      worklist_file = double('worklist_file')
-      allow(WorklistFile).to receive(:new).and_return(worklist_file)
-      allow(worklist_file).to receive(:create)
-      allow(worklist_file).to receive(:delete)
+    it 'creates XML export' do
+      xml_export = double('xml_export')
+      allow(XMLExport).to receive(:new).and_return(xml_export)
+      allow(xml_export).to receive(:create)
+      allow(xml_export).to receive(:delete)
 
       order = FactoryGirl.create(:order)
 
-      expect(WorklistFile).to have_received(:new).with(order)
-      expect(worklist_file).to have_received(:create)
+      expect(XMLExport).to have_received(:new).with(order)
+      expect(xml_export).to have_received(:create)
 
       order.destroy
 
-      expect(worklist_file).to have_received(:delete)
+      expect(xml_export).to have_received(:delete)
     end
   end
 

@@ -1,37 +1,37 @@
 require 'rails_helper'
 
-describe WorklistFile do
+describe XMLExport do
   let(:order) { double('order') }
-  let(:worklist_file) { WorklistFile.new(order) }
+  let(:subject) { described_class.new(order) }
 
   before do
     allow(order).to receive(:id) { 42 }
   end
 
   describe '#create' do
-    it 'creates worklist file'
+    it 'creates XML export'
   end
 
   describe '#delete' do
     context 'when created' do
       before do
-        allow(worklist_file).to receive(:created?) { true }
+        allow(subject).to receive(:created?) { true }
         allow(FileUtils).to receive(:rm)
       end
 
-      it 'deletes worklist file' do
-        worklist_file.delete
-        expect(FileUtils).to have_received(:rm).with(worklist_file.path)
+      it 'deletes XML export' do
+        subject.delete
+        expect(FileUtils).to have_received(:rm).with(subject.path)
       end
     end
 
     context 'when not created' do
       before do
-        allow(worklist_file).to receive(:created?) { false }
+        allow(subject).to receive(:created?) { false }
       end
 
       it 'does not raise error' do
-        expect{ worklist_file.delete }.not_to raise_error
+        expect{ subject.delete }.not_to raise_error
       end
     end
   end
@@ -45,20 +45,20 @@ describe WorklistFile do
     end
 
     it 'renders orders template to string' do
-      worklist_file.content
+      subject.content
       expect(orders_controller).to have_received(:render_to_string).
         with('show.xml', locals: { order: order })
     end
 
     it 'returns rendered string' do
       allow(orders_controller).to receive(:render_to_string) { 'chunky bacon' }
-      expect(worklist_file.content).to eq 'chunky bacon'
+      expect(subject.content).to eq 'chunky bacon'
     end
   end
 
   describe '#path' do
-    it 'returns path to worklist file' do
-      expect(worklist_file.path).to eq "#{Rails.configuration.worklist_dir}/#{order.id}.xml"
+    it 'returns file path' do
+      expect(subject.path).to eq "#{Rails.configuration.worklist_dir}/#{order.id}.xml"
     end
   end
 end
