@@ -69,7 +69,7 @@ class Order < ActiveRecord::Base
   end
 
   def to_hl7
-    ORM.new(self).to_hl7
+    HL7::ORM.new(self).to_hl7
   end
 
   private

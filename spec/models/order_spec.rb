@@ -321,14 +321,14 @@ RSpec.describe Order, type: :model do
   end
 
   describe '#to_hl7' do
-    let(:orm) { double('ORM', to_hl7: 'some fancy hl7') }
+    let(:orm) { double('HL7::ORM', to_hl7: 'some fancy hl7') }
     before do
-      allow(ORM).to receive(:new).and_return(orm)
+      allow(HL7::ORM).to receive(:new).and_return(orm)
     end
 
     it 'initializes HL7 ORM message with self' do
       subject.to_hl7
-      expect(ORM).to have_received(:new).with(subject)
+      expect(HL7::ORM).to have_received(:new).with(subject)
     end
 
     it 'exports HL7 ORM message' do
