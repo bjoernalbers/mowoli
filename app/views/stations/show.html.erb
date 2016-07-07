@@ -15,5 +15,12 @@
   <%= @station.aetitle %>
 </p>
 
+<p>
+  <strong>
+    <%= @station.class.human_attribute_name(:receives_orders_via_hl7) %>
+  </strong>
+  <%= @station.receives_orders_via_hl7 %>
+</p>
+
 <%= link_to 'Edit', edit_station_path(@station) %> |
 <%= link_to 'Back', stations_path %>
