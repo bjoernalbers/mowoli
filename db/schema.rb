@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150812145442) do
+ActiveRecord::Schema.define(version: 20160706121951) do
 
   create_table "orders", force: :cascade do |t|
     t.datetime "created_at",                      null: false
@@ -30,11 +30,12 @@ ActiveRecord::Schema.define(version: 20150812145442) do
   add_index "orders", ["study_instance_uid"], name: "index_orders_on_study_instance_uid", unique: true
 
   create_table "stations", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.string   "modality",   null: false
-    t.string   "aetitle",    null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name",                                    null: false
+    t.string   "modality",                                null: false
+    t.string   "aetitle",                                 null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.boolean  "receives_orders_via_hl7", default: false, null: false
   end
 
 end

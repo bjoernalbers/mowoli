@@ -69,6 +69,7 @@ class StationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def station_params
-      params.require(:station).permit(:name, :modality, :aetitle)
+      params.require(:station).
+        permit(:name, :modality, :aetitle, :receives_orders_via_hl7)
     end
 end

@@ -11,6 +11,8 @@ de:
         patients_sex: 'Geschlecht des Patienten'
         referring_physicians_name: 'Name des überweisenden Arztes'
         requested_procedure_description: 'Untersuchungsbeschreibung'
+      station:
+        receives_orders_via_hl7: 'Empfängt Aufträge per HL7?'
   orders:
     new:
       title: 'Neuer Auftrag'

@@ -1,7 +1,7 @@
 # encoding: utf-8
 require 'rails_helper'
 
-RSpec.describe Station, type: :model do
+describe Station do
   it 'has valid factory' do
     2.times { expect(create(:station)).to be_valid }
   end
@@ -94,6 +94,14 @@ RSpec.describe Station, type: :model do
         expect(station).to be_invalid
         expect(station.errors[:aetitle]).to be_present
       end
+    end
+  end
+
+  describe 'receives_orders_via_hl7' do
+    let(:station) { build(:station) }
+
+    it 'defaults to false' do
+      expect(station.receives_orders_via_hl7).to be_falsey
     end
   end
 end
