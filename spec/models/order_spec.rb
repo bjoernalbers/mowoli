@@ -8,34 +8,61 @@ describe Order do
   end
 
   context 'on create' do
-    it 'creates XML export' do
-      xml_export = double('xml_export')
-      allow(XMLExport).to receive(:new).and_return(xml_export)
-      allow(xml_export).to receive(:create)
+    let(:export) { double(:export) }
 
-      subject = FactoryGirl.create(:order)
+    before do
+      allow(export).to receive(:create)
+      allow(export).to receive(:delete)
+      allow(subject).to receive(:export).and_return(export)
+    end
 
-      expect(XMLExport).to have_received(:new).with(subject)
-      expect(xml_export).to have_received(:create)
+    it 'creates export' do
+      subject.save
+      expect(export).to have_received(:create)
     end
   end
 
   context 'on destroy' do
-    it 'creates XML export' do
-      xml_export = double('xml_export')
-      allow(XMLExport).to receive(:new).and_return(xml_export)
-      allow(xml_export).to receive(:create)
-      allow(xml_export).to receive(:delete)
+    let(:export) { double(:export) }
 
-      subject = FactoryGirl.create(:order)
-
-      expect(XMLExport).to have_received(:new).with(subject)
-      expect(xml_export).to have_received(:create)
-
-      subject.destroy
-
-      expect(xml_export).to have_received(:delete)
+    before do
+      allow(export).to receive(:create)
+      allow(export).to receive(:delete)
+      allow(subject).to receive(:export).and_return(export)
     end
+
+    it 'destroys export' do
+      subject.save # We have to save it first in order to destroy it
+      subject.destroy
+      expect(export).to have_received(:delete)
+    end
+  end
+
+  describe '#export' do
+    let(:export)  { double(:export) }
+
+    context 'when station does not receive orders via HL7' do
+      let(:station) { build(:station, receives_orders_via_hl7: false) }
+      let(:subject) { build(:order, station: station) }
+
+      it 'returns XMLExport instance' do
+        allow(XMLExport).to receive(:new).and_return(export)
+        expect(subject.send(:export)).to eq export
+        expect(XMLExport).to have_received(:new).with(subject)
+      end
+    end
+
+    context 'when station receives orders via HL7' do
+      let(:station) { build(:station, receives_orders_via_hl7: true) }
+      let(:subject) { build(:order, station: station) }
+
+      it 'returns HL7Export instance' do
+        allow(HL7Export).to receive(:new).and_return(export)
+        expect(subject.send(:export)).to eq export
+        expect(HL7Export).to have_received(:new).with(subject)
+      end
+    end
+
   end
 
   describe '#station' do
@@ -317,22 +344,6 @@ describe Order do
       end
       described_class.purge_expired
       expect(described_class).to exist(subject.id)
-    end
-  end
-
-  describe '#to_hl7' do
-    let(:orm) { double('HL7::ORM', to_hl7: 'some fancy hl7') }
-    before do
-      allow(HL7::ORM).to receive(:new).and_return(orm)
-    end
-
-    it 'initializes HL7 ORM message with self' do
-      subject.to_hl7
-      expect(HL7::ORM).to have_received(:new).with(subject)
-    end
-
-    it 'exports HL7 ORM message' do
-      expect(subject.to_hl7).to eq 'some fancy hl7'
     end
   end
 end

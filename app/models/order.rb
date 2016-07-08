@@ -41,8 +41,8 @@ class Order < ActiveRecord::Base
 
   before_validation :set_study_instance_uid
 
-  after_create :create_xml_export
-  after_destroy :delete_xml_export
+  after_create :create_export
+  before_destroy :destroy_export
 
   def self.purge_expired
     where('created_at < ?', Time.zone.now.beginning_of_day).destroy_all
@@ -68,10 +68,6 @@ class Order < ActiveRecord::Base
     self.referring_physicians_name = PersonName.new(attr).to_s
   end
 
-  def to_hl7
-    HL7::ORM.new(self).to_hl7
-  end
-
   private
 
   def set_study_instance_uid
@@ -84,11 +80,16 @@ class Order < ActiveRecord::Base
       ENV['SCHEDULED_PERFORMING_PHYSICIANS_NAME']
   end
 
-  def create_xml_export
-    XMLExport.new(self).create
+  def create_export
+    export.create
   end
 
-  def delete_xml_export
-    XMLExport.new(self).delete
+  def destroy_export
+    export.delete
+  end
+
+  def export
+    @export ||=
+      (station.receives_orders_via_hl7? ? HL7Export : XMLExport).new(self)
   end
 end

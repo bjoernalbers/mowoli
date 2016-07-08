@@ -43,4 +43,6 @@ Rails.application.configure do
 
   # Here we're storing our worklist (XML) files for dcm4che's dcmof.
   config.worklist_dir = Dir.mktmpdir
+
+  config.hl7_export_dir = Dir.mktmpdir
 end
