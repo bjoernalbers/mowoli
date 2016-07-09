@@ -26,3 +26,6 @@
 
 # Default directory for worklist files.
 /worklist
+
+# Ansible stuff
+/playbooks
