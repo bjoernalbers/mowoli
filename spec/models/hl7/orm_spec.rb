@@ -116,7 +116,7 @@ module HL7
     end
 
     it 'OBR-44 returns requested procedure description' do
-      expect(obr.procedure_code).to eq order.requested_procedure_description
+      expect(obr.procedure_code).to eq('^^^^' + order.requested_procedure_description)
     end
 
     describe '#to_hl7' do

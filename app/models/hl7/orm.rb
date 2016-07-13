@@ -223,7 +223,7 @@ module HL7
         #transport_arranged
         #escort_required
         #planned_patient_transport_comment
-        procedure_code: order.requested_procedure_description,
+        procedure_code: '^^^^' + order.requested_procedure_description,
         #procedure_code_modifier
         #placer_supplemental_service_information
         #filler_supplemental_service_information
