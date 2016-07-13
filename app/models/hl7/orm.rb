@@ -197,7 +197,7 @@ module HL7
         #specimen_source
         #ordering_provider
         #order_callback_phone_number
-        placer_field_1: order.modality,
+        placer_field_1: order.accession_number,
         #placer_field_2
         #filler_field_1
         #filler_field_2

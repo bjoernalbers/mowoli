@@ -99,8 +99,8 @@ module HL7
       end
     end
 
-    it 'OBR-18 returns modality' do
-      expect(obr.placer_field_1).to eq order.modality
+    it 'OBR-18 returns accession number' do
+      expect(obr.placer_field_1).to eq order.accession_number
     end
 
     it 'OBR-21 returns constant' do
