@@ -22,5 +22,12 @@
   <%= @station.receives_orders_via_hl7 %>
 </p>
 
+<p>
+  <strong>
+    <%= @station.class.human_attribute_name(:character_set) %>
+  </strong>
+  <%= @station.character_set %>
+</p>
+
 <%= link_to 'Edit', edit_station_path(@station) %> |
 <%= link_to 'Back', stations_path %>

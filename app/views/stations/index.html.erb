@@ -9,6 +9,7 @@
       <th>Modality</th>
       <th>Aetitle</th>
       <th><%= Station.human_attribute_name(:receives_orders_via_hl7) %></th>
+      <th><%= Station.human_attribute_name(:character_set) %></th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -20,6 +21,7 @@
         <td><%= station.modality %></td>
         <td><%= station.aetitle %></td>
         <td><%= station.receives_orders_via_hl7 %></td>
+        <td><%= station.character_set %></td>
         <td><%= link_to 'Show', station %></td>
         <td><%= link_to 'Edit', edit_station_path(station) %></td>
         <td><%= link_to 'Destroy', station, method: :delete, data: { confirm: 'Are you sure?' } %></td>
