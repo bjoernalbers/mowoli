@@ -6,8 +6,10 @@ describe 'rendering order template' do
   end
 
   it 'includes "Specific Character Set"' do
-    render_template_with(build(:order))
-    expect(rendered).to include '<attr tag="00080005" vr="CS">ISO_IR 100</attr>'
+    order = build(:order)
+    allow(order).to receive(:character_set) { 'ISO_IR 42' }
+    render_template_with(order)
+    expect(rendered).to include '<attr tag="00080005" vr="CS">ISO_IR 42</attr>'
   end
 
   it 'includes id as "Accession Number"' do

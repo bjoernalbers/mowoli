@@ -13,6 +13,7 @@ feature 'Create station' do
       fill_in 'Modality', with: attributes[:modality]
       fill_in 'Aetitle', with: attributes[:aetitle]
       check 'Empfängt Aufträge per HL7?'
+      select 'ISO_IR 192', from: 'Zeichensatz'
       click_button 'Station erstellen'
     }.to change(Station, :count).by(1)
 
@@ -21,5 +22,6 @@ feature 'Create station' do
     expect(station.modality).to eq attributes[:modality]
     expect(station.aetitle).to eq attributes[:aetitle]
     expect(station.receives_orders_via_hl7).to be_truthy
+    expect(station.character_set).to eq 'ISO_IR 192'
   end
 end

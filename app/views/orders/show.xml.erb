@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dicom>
   <!--Specific Character Set-->
-  <attr tag="00080005" vr="CS">ISO_IR 100</attr>
+  <attr tag="00080005" vr="CS"><%= order.character_set %></attr>
   <!--Accession Number-->
   <attr tag="00080050" vr="SH"><%= order.accession_number %></attr>
   <!--Referring Physician's Name-->

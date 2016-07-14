@@ -13,6 +13,7 @@ de:
         requested_procedure_description: 'Untersuchungsbeschreibung'
       station:
         receives_orders_via_hl7: 'Empfängt Aufträge per HL7?'
+        character_set: 'Zeichensatz'
   orders:
     new:
       title: 'Neuer Auftrag'

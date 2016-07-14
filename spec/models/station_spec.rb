@@ -97,6 +97,26 @@ describe Station do
     end
   end
 
+  describe '#character_set' do
+    it 'defaults to "ISO_IR 100"' do
+      default_character_set = 'ISO_IR 100'
+      expect(subject.character_set).to eq default_character_set
+    end
+
+    it 'can be "ISO_IR 192"' do
+      new_character_set = 'ISO_IR 192'
+      subject.character_set = new_character_set
+      expect(subject.character_set).to eq new_character_set
+    end
+
+    it 'can not be unknown value' do
+      unknown_character_set = 'ISO_IR 42'
+      expect {
+        subject.character_set = unknown_character_set
+      }.to raise_error(ArgumentError)
+    end
+  end
+
   describe 'receives_orders_via_hl7' do
     let(:subject) { build(:station) }
 

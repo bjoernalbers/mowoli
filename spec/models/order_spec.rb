@@ -38,6 +38,20 @@ describe Order do
     end
   end
 
+  describe '#character_set' do
+    let(:station) { build(:station) }
+    let(:subject) { build(:order, station: station) }
+    let(:character_set) { 'ISO_IR 42' }
+
+    before do
+      allow(station).to receive(:character_set) { character_set }
+    end
+
+    it 'returns character set from station' do
+      expect(subject.character_set).to eq character_set
+    end
+  end
+
   describe '#export' do
     let(:export)  { double(:export) }
 

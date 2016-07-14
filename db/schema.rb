@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160706121951) do
+ActiveRecord::Schema.define(version: 20160714105003) do
 
   create_table "orders", force: :cascade do |t|
     t.datetime "created_at",                      null: false
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20160706121951) do
     t.datetime "created_at",                              null: false
     t.datetime "updated_at",                              null: false
     t.boolean  "receives_orders_via_hl7", default: false, null: false
+    t.integer  "character_set",           default: 0,     null: false
   end
 
 end
