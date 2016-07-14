@@ -70,6 +70,10 @@ class Order < ActiveRecord::Base
     self.referring_physicians_name = PersonName.new(attr).to_s
   end
 
+  def issuer_of_patient_id
+    @issuer_of_patient_id ||= ENV.fetch('ISSUER_OF_PATIENT_ID', 'MOWOLI')
+  end
+
   private
 
   def set_study_instance_uid

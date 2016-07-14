@@ -340,6 +340,23 @@ describe Order do
     end
   end
 
+  describe '#issuer_of_patient_id' do
+    before do
+      allow(ENV).to receive(:fetch) { 'Chunky Bacon' }
+    end
+
+    it 'reads ISSUER_OF_PATIENT_ID with "MOWOLI" as default' do
+      subject.issuer_of_patient_id
+      expect(ENV).to have_received(:fetch).
+        with('ISSUER_OF_PATIENT_ID', 'MOWOLI')
+    end
+
+    it 'returns cached value' do
+      2.times { expect(subject.issuer_of_patient_id).to eq 'Chunky Bacon' }
+      expect(ENV).to have_received(:fetch).once
+    end
+  end
+
   describe '.purge_expired' do
     let(:now) { Time.zone.now }
     let(:subject) { build(:order) }

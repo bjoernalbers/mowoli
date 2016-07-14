@@ -14,6 +14,8 @@
   <attr tag="00100010" vr="PN"><%= order.patients_name %></attr>
   <!--Patient ID-->
   <attr tag="00100020" vr="LO"><%= order.patient_id %></attr>
+  <!--Issuer of Patient ID-->
+  <attr tag="00100021" vr="LO"><%= order.issuer_of_patient_id %></attr>
   <!--Patient's Birth Date-->
   <attr tag="00100030" vr="DA"><%= order.patients_birth_date.strftime('%Y%m%d') %></attr>
   <!--Patient's Sex-->

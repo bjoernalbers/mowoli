@@ -42,6 +42,13 @@ describe 'rendering order template' do
     expect(rendered).to include '<attr tag="00100020" vr="LO">42</attr>'
   end
 
+  it 'includes "Issuer of Patient ID"' do
+    order = build(:order)
+    allow(order).to receive(:issuer_of_patient_id) { 'Chunky Bacon' }
+    render_template_with(order)
+    expect(rendered).to include '<attr tag="00100021" vr="LO">Chunky Bacon</attr>'
+  end
+
   it 'includes "Patients Birth Date"' do
     render_template_with(build(:order, patients_birth_date: '1978-05-26'))
     expect(rendered).to include '<attr tag="00100030" vr="DA">19780526</attr>'
