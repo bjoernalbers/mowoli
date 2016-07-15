@@ -48,14 +48,10 @@ class Order < ActiveRecord::Base
     where('created_at < ?', Time.zone.now.beginning_of_day).destroy_all
   end
 
-  delegate :character_set, to: :station
+  delegate :character_set, :modality, to: :station
 
   def accession_number
     id.to_s
-  end
-
-  def modality
-    station.modality if station
   end
 
   def scheduled_station_ae_title

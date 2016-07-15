@@ -6,6 +6,7 @@ describe Station do
     2.times { expect(create(:station)).to be_valid }
   end
 
+
   it 'has many orders' do
     subject = create(:station)
     order = create(:order, station: subject)
@@ -21,37 +22,24 @@ describe Station do
     end
   end
 
+  describe '#modality' do
+    let(:subject) { build(:station) }
+
+    it 'must be present' do
+      subject.modality = nil
+      expect(subject).to be_invalid
+      expect(subject.errors[:modality]).to be_present
+      expect{subject.save!(validate: false) }.
+        to raise_error(ActiveRecord::ActiveRecordError)
+    end
+  end
+
   describe '#name' do
     it 'must be present' do
       subject = build(:station, name: nil)
       expect(subject).to be_invalid
       expect(subject.errors[:name]).to be_present
       expect{ subject.save!(validate: false) }.to raise_error
-    end
-  end
-
-  describe '#modality' do
-    it 'must be present' do
-      subject = build(:station, modality: nil)
-      expect(subject).to be_invalid
-      expect(subject.errors[:modality]).to be_present
-      expect{ subject.save!(validate: false) }.to raise_error
-    end
-
-    it 'must include valid code' do
-      valid_modality_codes = %w{CR CT DX MG MR NM US}
-      valid_modality_codes.each do |code|
-        subject = build(:station, modality: code)
-        expect(subject).to be_valid
-      end
-
-      invalid_modality_codes = %w{AB Cr cT dx}
-      invalid_modality_codes += ['', 'CT.', ' MR', "NM\t", 'ÜS']
-      invalid_modality_codes.each do |code|
-        subject = build(:station, modality: code)
-        expect(subject).to be_invalid
-        expect(subject.errors[:modality]).to be_present
-      end
     end
   end
 

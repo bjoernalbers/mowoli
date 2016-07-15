@@ -16,12 +16,12 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :modality %><br>
-    <%= f.text_field :modality %>
-  </div>
-  <div class="field">
     <%= f.label :aetitle %><br>
     <%= f.text_field :aetitle %>
+  </div>
+  <div class="field">
+    <%= f.label :modality %><br>
+    <%= f.collection_select :modality_id, Modality.all, :id, :name %>
   </div>
   <div class="field">
     <%= f.label :receives_orders_via_hl7 %><br>

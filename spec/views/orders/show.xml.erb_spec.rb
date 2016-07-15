@@ -135,8 +135,9 @@ describe 'rendering order template' do
   end
 
   it 'includes "Modality"' do
-    station = create(:station, modality: 'CT')
-    render_template_with(build(:order, station: station))
+    order = build(:order)
+    allow(order).to receive(:modality) { 'CT' }
+    render_template_with(order)
     expect(rendered).to include '<attr tag="00080060" vr="CS">CT</attr>'
   end
 

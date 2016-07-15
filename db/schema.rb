@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160714105003) do
+ActiveRecord::Schema.define(version: 20160715092930) do
+
+  create_table "modalities", force: :cascade do |t|
+    t.string   "name",        null: false
+    t.string   "description", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "modalities", ["name"], name: "index_modalities_on_name", unique: true
 
   create_table "orders", force: :cascade do |t|
     t.datetime "created_at",                      null: false
@@ -31,12 +40,12 @@ ActiveRecord::Schema.define(version: 20160714105003) do
 
   create_table "stations", force: :cascade do |t|
     t.string   "name",                                    null: false
-    t.string   "modality",                                null: false
     t.string   "aetitle",                                 null: false
     t.datetime "created_at",                              null: false
     t.datetime "updated_at",                              null: false
     t.boolean  "receives_orders_via_hl7", default: false, null: false
     t.integer  "character_set",           default: 0,     null: false
+    t.integer  "modality_id",                             null: false
   end
 
 end

@@ -23,13 +23,11 @@ RSpec.describe StationsController, type: :controller do
   # Station. As you add validations to Station, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    FactoryGirl.attributes_for(:station)
+    FactoryGirl.build(:station).slice(:name, :aetitle, :modality_id)
   }
 
   let(:invalid_attributes) {
-    h = valid_attributes
-    h[:modality] = 'Chunky Bacon'
-    h
+    valid_attributes.merge(name: nil)
   }
 
   # This should return the minimal set of values that should be in the session

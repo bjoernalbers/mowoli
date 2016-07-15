@@ -13,6 +13,6 @@ json.station do |json|
   json.extract! @order.station,
     :id,
     :name,
-    :modality,
     :aetitle
+  json.modality @order.station.modality.name
 end

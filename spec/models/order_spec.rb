@@ -273,12 +273,9 @@ describe Order do
 
   describe '#modality' do
     it 'returns modality from station' do
-      subject = build(:order, station: nil)
-      expect(subject.modality).to be nil
-
-      station = create(:station, modality: 'DX')
+      station = build(:station)
       subject = build(:order, station: station)
-      expect(subject.modality).to eq 'DX'
+      expect(subject.modality).to eq station.modality
     end
   end
 

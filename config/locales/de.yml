@@ -1,8 +1,12 @@
 de:
   activerecord:
     models:
+      modality: 'Modalität'
       order: 'Auftrag'
     attributes:
+      modality:
+        name: 'Name'
+        description: 'Beschreibung'
       order:
         accession_number: 'Auftragsnummer'
         patient_id: 'Patienten-ID'
@@ -14,6 +18,7 @@ de:
       station:
         receives_orders_via_hl7: 'Empfängt Aufträge per HL7?'
         character_set: 'Zeichensatz'
+        modality: 'Modalität'
   orders:
     new:
       title: 'Neuer Auftrag'

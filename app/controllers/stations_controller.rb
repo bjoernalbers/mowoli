@@ -71,7 +71,7 @@ class StationsController < ApplicationController
     def station_params
       params.require(:station).permit(
         :name,
-        :modality,
+        :modality_id,
         :aetitle,
         :receives_orders_via_hl7,
         :character_set)

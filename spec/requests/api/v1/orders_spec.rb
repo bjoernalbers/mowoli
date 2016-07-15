@@ -204,7 +204,7 @@ describe 'Orders APIv1' do
         # Station
         expect(json['station']['id']).to eq order.station.id
         expect(json['station']['name']).to eq order.station.name
-        expect(json['station']['modality']).to eq order.station.modality
+        expect(json['station']['modality']).to eq order.station.modality.name
         expect(json['station']['aetitle']).to eq order.station.aetitle
       end
     end

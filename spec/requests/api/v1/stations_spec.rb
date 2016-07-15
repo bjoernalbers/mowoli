@@ -28,7 +28,7 @@ describe 'Stations APIv1' do
       json_station = json.first
       expect(json_station['id']).to eq station.id
       expect(json_station['name']).to eq station.name
-      expect(json_station['modality']).to eq station.modality
+      expect(json_station['modality']).to eq station.modality.name
       expect(json_station['aetitle']).to eq station.aetitle
     end
   end

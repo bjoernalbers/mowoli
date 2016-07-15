@@ -6,7 +6,9 @@
 </p>
 
 <p>
-  <strong>Modality:</strong>
+  <strong>
+    <%= @station.class.human_attribute_name(:modality) %>
+  </strong>
   <%= @station.modality %>
 </p>
 
