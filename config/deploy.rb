@@ -38,7 +38,7 @@ set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', '
 # Default value for keep_releases is 5
 # set :keep_releases, 5
 
-set :services, %w(app)
+set :services, %w(app purge_expired_orders)
 
 namespace :deploy do
   namespace :check do
