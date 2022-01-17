@@ -27,9 +27,6 @@
 # Default directory for worklist files.
 /worklist
 
-# Ansible stuff
-/playbooks
-
 # Vendored gems
 /vendor/bundle
 
