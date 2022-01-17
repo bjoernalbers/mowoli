@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Build Docker Image
+
+docker build --tag bjoernalbers/mowoli .
