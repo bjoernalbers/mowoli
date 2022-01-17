@@ -1,0 +1,13 @@
+.env
+.git
+.gitignore
+.bundle
+config/deploy
+config/database.yml
+db/*
+log/*
+tmp/*
+vendor/bundle
+public/assets
+worklist/*
+**/.DS_Store
