@@ -6,5 +6,5 @@ WORKDIR /opt/mowoli
 COPY Gemfile Gemfile.lock ./
 RUN bundle install
 COPY . .
-RUN mkdir -p var/sqlite3
-VOLUME /opt/mowoli/var/sqlite3
+RUN mkdir -p var/dcm4che2 var/sqlite3
+VOLUME /opt/mowoli/var/dcm4che2 /opt/mowoli/var/sqlite3

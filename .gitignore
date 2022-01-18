@@ -22,9 +22,6 @@
 # Custom application config (foreman)
 /.env
 
-# Default directory for worklist files.
-/worklist
-
 # Vendored gems
 /vendor/bundle
 

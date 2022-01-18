@@ -8,5 +8,4 @@ log/*
 tmp/*
 vendor/bundle
 public/assets
-worklist/*
 **/.DS_Store
