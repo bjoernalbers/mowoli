@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Run Docker Image
+
+docker run --rm --interactive --tty bjoernalbers/mowoli $@
