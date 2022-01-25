@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-# Build Docker Image
+# Build Docker Image for production
 
-docker build --tag bjoernalbers/mowoli .
+docker build --file Dockerfile.production --tag bjoernalbers/mowoli .
