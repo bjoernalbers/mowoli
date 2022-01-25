@@ -16,5 +16,6 @@ ENV SCHEDULED_PERFORMING_PHYSICIANS_NAME="Simpson^Bart"
 # department) that issued the Patient ID.
 # This sets DICOM-Tag (0010,0021).
 ENV ISSUER_OF_PATIENT_ID="MOWOLI"
+ENV RAILS_ENV=production
 EXPOSE 3000
 CMD ["bundle","exec","puma","--config","config/puma.rb"]
