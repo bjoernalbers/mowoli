@@ -16,3 +16,4 @@ ENV SCHEDULED_PERFORMING_PHYSICIANS_NAME="Simpson^Bart"
 # department) that issued the Patient ID.
 # This sets DICOM-Tag (0010,0021).
 ENV ISSUER_OF_PATIENT_ID="MOWOLI"
+EXPOSE 3000
