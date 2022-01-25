@@ -18,4 +18,5 @@ ENV SCHEDULED_PERFORMING_PHYSICIANS_NAME="Simpson^Bart"
 ENV ISSUER_OF_PATIENT_ID="MOWOLI"
 ENV RAILS_ENV=production
 EXPOSE 3000
+RUN bin/rake assets:precompile
 CMD ["bundle","exec","puma","--config","config/puma.rb"]
