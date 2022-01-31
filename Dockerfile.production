@@ -4,7 +4,7 @@ RUN apt-get update \
   && rm -rf /var/lib/apt/lists/*
 WORKDIR /opt/mowoli
 COPY Gemfile Gemfile.lock ./
-RUN bundle install
+RUN bundle install --deployment
 COPY . .
 RUN mkdir -p var/dcm4che2 var/sqlite3
 VOLUME /opt/mowoli/var/dcm4che2 /opt/mowoli/var/sqlite3
