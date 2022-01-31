@@ -11,9 +11,7 @@
 /db/*.sqlite3
 /db/*.sqlite3-journal
 
-# Ignore all logfiles and tempfiles.
-/log/*
-!/log/.keep
+# Ignore temp. stuff.
 /tmp
 
 # Site-specific deployment config

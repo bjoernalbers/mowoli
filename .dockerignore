@@ -4,7 +4,6 @@
 .bundle
 config/deploy
 db/*.sqlite3
-log/*
 tmp/*
 vendor/bundle
 public/assets
