@@ -6,10 +6,10 @@ WORKDIR /opt/mowoli
 COPY Gemfile Gemfile.lock ./
 RUN bundle install --deployment
 COPY . .
-RUN mkdir -p var/dcm4che2 var/sqlite3
-VOLUME /opt/mowoli/var/dcm4che2 /opt/mowoli/var/sqlite3
+RUN mkdir -p var/mwl var/sqlite3
+VOLUME /opt/mowoli/var/mwl /opt/mowoli/var/sqlite3
 # Export directory for the Modality Worklist (MWL).
-ENV MWL_DIR="/opt/mowoli/var/dcm4che2"
+ENV MWL_DIR="/opt/mowoli/var/mwl"
 # Name of your hospital / office (max. 64 characters)
 ENV SCHEDULED_PERFORMING_PHYSICIANS_NAME="Simpson^Bart"
 # Identifier of the Assigning Authority (system, organization, agency, or
