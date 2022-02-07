@@ -6,8 +6,8 @@ WORKDIR /opt/mowoli
 COPY Gemfile Gemfile.lock ./
 RUN bundle install --deployment
 COPY . .
-RUN mkdir -p var/mwl var/sqlite3
-VOLUME /opt/mowoli/var/mwl /opt/mowoli/var/sqlite3
+RUN mkdir -p var/mwl var/db
+VOLUME /opt/mowoli/var/mwl /opt/mowoli/var/db
 # Export directory for the Modality Worklist (MWL).
 ENV MWL_DIR="/opt/mowoli/var/mwl"
 # Name of your hospital / office (max. 64 characters)
