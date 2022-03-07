@@ -1,0 +1,41 @@
+---
+version: "3.8"
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.production
+    image: bjoernalbers/mowoli:production
+    ports:
+      - "80:3000"
+    volumes:
+      - db:/opt/mowoli/var/db
+      - mwl:/opt/mowoli/var/mwl
+  background:
+    image: bjoernalbers/mowoli:production
+    volumes:
+      - db:/opt/mowoli/var/db
+      - mwl:/opt/mowoli/var/mwl
+    command:
+      - "bundle"
+      - "exec"
+      - "rake"
+      - "orders:purge_expired"
+    deploy:
+      restart_policy:
+        delay: 1h
+  dicom:
+    image: bjoernalbers/dcm4che2
+    ports:
+      - "11112:11112"
+    volumes:
+      - mwl:/opt/dcm4che2/var
+    command:
+      - "dcmof"
+      - "-mwl"
+      - "var"
+      - "11112"
+
+volumes:
+  db:
+  mwl:
