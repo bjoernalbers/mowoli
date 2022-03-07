@@ -14,9 +14,6 @@
 # Ignore temp. stuff.
 /tmp
 
-# Site-specific deployment config
-/config/deploy
-
 # Custom application config (foreman)
 /.env
 

@@ -2,7 +2,6 @@
 .git
 .gitignore
 .bundle
-config/deploy
 db/*.sqlite3
 tmp/*
 public/assets

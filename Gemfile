@@ -32,15 +32,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Puma as the app server
 gem 'puma'
 
-# Use Capistrano for deployment
-group :development do
-  gem 'capistrano', '3.3.5'
-  gem 'capistrano-rails', '~> 1.1'
-  gem 'capistrano-bundler', '~> 1.1'
-  #gem 'capistrano-chruby', '~> 0.1'
-  #gem 'capistrano-cookbook', require: false
-end
-
 group :development, :test do
   gem 'rspec-rails', '~> 3.1'
   gem 'faker', '~> 1.4'
