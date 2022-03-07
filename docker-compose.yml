@@ -1,0 +1,27 @@
+---
+version: "3.8"
+services:
+  web:
+    build:
+      context: .
+    image: bjoernalbers/mowoli
+    ports:
+      - "80:3000"
+    volumes:
+      - .:/opt/mowoli
+      - db:/opt/mowoli/var/db
+      - mwl:/opt/mowoli/var/mwl
+  dicom:
+    image: bjoernalbers/dcm4che2
+    ports:
+      - "11112:11112"
+    volumes:
+      - mwl:/opt/dcm4che2/var
+    command:
+      - "dcmof"
+      - "-mwl"
+      - "var"
+      - "11112"
+volumes:
+  db:
+  mwl:
