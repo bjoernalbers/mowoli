@@ -20,8 +20,5 @@
 # Custom application config (foreman)
 /.env
 
-# Vendored gems
-/vendor/bundle
-
 # Assets directory
 /public/assets

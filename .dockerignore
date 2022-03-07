@@ -5,6 +5,5 @@
 config/deploy
 db/*.sqlite3
 tmp/*
-vendor/bundle
 public/assets
 **/.DS_Store
