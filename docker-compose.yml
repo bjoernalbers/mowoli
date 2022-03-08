@@ -10,6 +10,7 @@ services:
     volumes:
       - .:/opt/mowoli
       - db:/opt/mowoli/var/db
+      - hl7:/opt/mowoli/var/hl7
       - mwl:/opt/mowoli/var/mwl
   dicom:
     image: bjoernalbers/dcm4che2
@@ -24,4 +25,5 @@ services:
       - "11112"
 volumes:
   db:
+  hl7:
   mwl:

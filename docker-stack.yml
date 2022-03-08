@@ -15,6 +15,7 @@ services:
     image: bjoernalbers/mowoli:production
     volumes:
       - db:/opt/mowoli/var/db
+      - hl7:/opt/mowoli/var/hl7
       - mwl:/opt/mowoli/var/mwl
     command:
       - "bundle"
@@ -38,4 +39,5 @@ services:
 
 volumes:
   db:
+  hl7:
   mwl:

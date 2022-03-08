@@ -6,10 +6,12 @@ WORKDIR /opt/mowoli
 COPY Gemfile Gemfile.lock ./
 RUN bundle install --deployment --without development test
 COPY . .
-RUN mkdir -p var/mwl var/db
-VOLUME /opt/mowoli/var/mwl /opt/mowoli/var/db
+RUN mkdir -p var/mwl var/db var/hl7
+VOLUME /opt/mowoli/var/mwl /opt/mowoli/var/db /opt/mowoli/var/hl7
 # Export directory for the Modality Worklist (MWL).
 ENV MWL_DIR="/opt/mowoli/var/mwl"
+# Export directory for HL7 files:
+ENV HL7_EXPORT_DIR="/opt/mowoli/var/hl7"
 # Name of your hospital / office (max. 64 characters)
 ENV SCHEDULED_PERFORMING_PHYSICIANS_NAME="Simpson^Bart"
 # Identifier of the Assigning Authority (system, organization, agency, or
