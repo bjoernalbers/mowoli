@@ -3,7 +3,7 @@
   <!--Specific Character Set-->
   <attr tag="00080005" vr="CS"><%= order.character_set %></attr>
   <!--Accession Number-->
-  <attr tag="00080050" vr="SH"><%= order.accession_number %></attr>
+  <attr tag="00080050" vr="SH"><%= order.accession_numberx %></attr>
   <!--Referring Physician's Name-->
   <attr tag="00080090" vr="PN"><%= order.referring_physicians_name %></attr>
   <!--Referenced Study Sequence-->
@@ -63,9 +63,11 @@
       <!--Scheduled Station AE Title-->
       <attr tag="00400001" vr="AE"><%= order.scheduled_station_ae_title %></attr>
       <!--Scheduled Procedure Step Start Date-->
-      <attr tag="00400002" vr="DA"><%= order.created_at.strftime('%Y%m%d') if order.created_at.present? %></attr>
+      <!-- update: order.created_at.strftime('%Y%m%d') if order.created_at.present? -->
+      <attr tag="00400002" vr="DA"><%= order.scheduled_procedure_step_start_datetime.split("T")[0]  if order.scheduled_procedure_step_start_datetime.present? %></attr>
       <!--Scheduled Procedure Step Start Time-->
-      <attr tag="00400003" vr="TM"><%= order.created_at.strftime('%H%M%S') if order.created_at.present? %></attr>
+      <!--update:order.created_at.strftime('%H%M%S') if order.created_at.present? -->
+      <attr tag="00400003" vr="TM"><%= order.scheduled_procedure_step_start_datetime.split("T")[1]  if order.scheduled_procedure_step_start_datetime.present? %></attr>
       <!--Scheduled Performing Physician's Name-->
       <attr tag="00400006" vr="PN"><%= order.scheduled_performing_physicians_name %></attr>
       <!--Scheduled Procedure Step Description-->

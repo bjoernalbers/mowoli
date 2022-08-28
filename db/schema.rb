@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160715092930) do
+ActiveRecord::Schema.define(version: 20220827120101) do
 
   create_table "modalities", force: :cascade do |t|
     t.string   "name",        null: false
@@ -23,16 +23,18 @@ ActiveRecord::Schema.define(version: 20160715092930) do
   add_index "modalities", ["name"], name: "index_modalities_on_name", unique: true
 
   create_table "orders", force: :cascade do |t|
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.string   "patient_id",                      null: false
-    t.string   "patients_sex",                    null: false
-    t.string   "patients_name",                   null: false
-    t.string   "referring_physicians_name",       null: false
-    t.string   "requested_procedure_description", null: false
-    t.string   "study_instance_uid",              null: false
-    t.date     "patients_birth_date",             null: false
-    t.integer  "station_id",                      null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.string   "patient_id",                              null: false
+    t.string   "patients_sex",                            null: false
+    t.string   "patients_name",                           null: false
+    t.string   "referring_physicians_name",               null: false
+    t.string   "requested_procedure_description",         null: false
+    t.string   "study_instance_uid",                      null: false
+    t.date     "patients_birth_date",                     null: false
+    t.integer  "station_id",                              null: false
+    t.string   "accession_numberx"
+    t.string   "scheduled_procedure_step_start_datetime"
   end
 
   add_index "orders", ["station_id"], name: "index_orders_on_station_id"
