@@ -42,7 +42,11 @@ module API
 
       def order_params
         p = params.require(:order).
-          permit(:patient_id,
+          permit(:accession_numberx,   # work around for accession_number tied to id
+                 :scheduled_procedure_step_start_datetime,  # added as extra parameter for butterfly
+                :referring_physicians_name,# added as extra parameter for butterfly
+                :study_instance_uid, # added provided study_instance_uid handling
+                :patient_id,
                  :patients_birth_date,
                  :patients_sex,
                  :requested_procedure_description,

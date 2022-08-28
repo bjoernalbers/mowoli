@@ -51,8 +51,8 @@ class Order < ActiveRecord::Base
   delegate :character_set, :modality, to: :station
 
   def accession_number
-    id.to_s
-  end
+     id.to_s
+   end
 
   def scheduled_station_ae_title
     station.aetitle if station
@@ -61,9 +61,9 @@ class Order < ActiveRecord::Base
   def patients_name_attributes=(attr)
     self.patients_name = PersonName.new(attr).to_s
   end
-
+  # This cast is not needed for this verion
   def referring_physicians_name_attributes=(attr)
-    self.referring_physicians_name = PersonName.new(attr).to_s
+    #self.referring_physicians_name = PersonName.new(attr).to_s
   end
 
   def issuer_of_patient_id
