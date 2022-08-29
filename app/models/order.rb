@@ -63,7 +63,7 @@ class Order < ActiveRecord::Base
   end
   # This cast is not needed for this verion
   def referring_physicians_name_attributes=(attr)
-    #self.referring_physicians_name = PersonName.new(attr).to_s
+    self.referring_physicians_name = PersonName.new(attr).to_s
   end
 
   def issuer_of_patient_id

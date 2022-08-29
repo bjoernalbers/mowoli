@@ -28,7 +28,7 @@ class OrdersController < ApplicationController
 
   def order_params
     params.require(:order).
-      permit(:referring_physicians_name,  # added as extra parameter for butterfly
+      permit(:requesting_physicians_name,  # added as extra parameter for butterfly
              :accession_numberx,          # work around for accession_number tied to id
              :study_instance_uid,         # added provided study_instance_uid handling
              :patients_birth_date,
