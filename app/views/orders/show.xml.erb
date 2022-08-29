@@ -31,7 +31,7 @@
   <!--Study Instance UID-->
   <attr tag="0020000D" vr="UI"><%= order.study_instance_uid %></attr>
   <!--Requesting Physician's Name-->
-  <attr tag="00321032" vr="PN"><%= order.referring_physicians_name %></attr>
+  <attr tag="00321032" vr="PN"><%= order.requesting_physicians_name %></attr>
   <!--Requested Procedure Description-->
   <attr tag="00321060" vr="LO"><%= order.requested_procedure_description %></attr>
   <!--Requested Procedure Code Sequence-->
@@ -64,10 +64,10 @@
       <attr tag="00400001" vr="AE"><%= order.scheduled_station_ae_title %></attr>
       <!--Scheduled Procedure Step Start Date-->
       <!-- update: order.created_at.strftime('%Y%m%d') if order.created_at.present? -->
-      <attr tag="00400002" vr="DA"><%= order.scheduled_procedure_step_start_datetime.split("T")[0]  if order.scheduled_procedure_step_start_datetime.present? %></attr>
+      <attr tag="00400002" vr="DA"><%= order.scheduled_procedure_step_start_datetime.split("T")[0].gsub("-","")  if order.scheduled_procedure_step_start_datetime.present? %></attr>
       <!--Scheduled Procedure Step Start Time-->
       <!--update:order.created_at.strftime('%H%M%S') if order.created_at.present? -->
-      <attr tag="00400003" vr="TM"><%= order.scheduled_procedure_step_start_datetime.split("T")[1]  if order.scheduled_procedure_step_start_datetime.present? %></attr>
+      <attr tag="00400003" vr="TM"><%= order.scheduled_procedure_step_start_datetime.split("T")[1].gsub(":","")  if order.scheduled_procedure_step_start_datetime.present? %></attr>
       <!--Scheduled Performing Physician's Name-->
       <attr tag="00400006" vr="PN"><%= order.scheduled_performing_physicians_name %></attr>
       <!--Scheduled Procedure Step Description-->
