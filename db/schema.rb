@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20220827120101) do
+ActiveRecord::Schema.define(version: 20220828120101) do
 
   create_table "modalities", force: :cascade do |t|
     t.string   "name",        null: false
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20220827120101) do
     t.integer  "station_id",                              null: false
     t.string   "accession_numberx"
     t.string   "scheduled_procedure_step_start_datetime"
+    t.string   "requesting_physicians_name"
   end
 
   add_index "orders", ["station_id"], name: "index_orders_on_station_id"
