@@ -1,0 +1,31 @@
+---
+version: "3.8"
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.production
+    image: bjoernalbers/mowoli
+    ports:
+      - "80:3000"
+    volumes:
+      - .:/opt/mowoli
+      - db:/opt/mowoli/var/db
+      - hl7:/opt/mowoli/var/hl7
+      - mwl:/opt/mowoli/var/mwl
+  dicom:
+    image: bjoernalbers/dcm4che2
+    ports:
+      - "11113:11113"
+    volumes:
+      - mwl:/opt/dcm4che2/var
+    command:
+      - "dcmof"
+      - "-mwl"
+      - "var"
+      - "11113"
+volumes:
+  db:
+  hl7:
+  mwl:
+  
