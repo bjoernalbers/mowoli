@@ -1,9 +1,10 @@
-FROM ruby:2.0.0-p648
+FROM ruby:2.6.10
 RUN apt-get update \
   && apt-get -y --no-install-recommends install nodejs \
   && rm -rf /var/lib/apt/lists/*
 WORKDIR /opt/mowoli
 COPY Gemfile Gemfile.lock ./
+RUN gem install bundler:2.0.0.pre.3
 RUN bundle install
 COPY . .
 RUN mkdir -p var/mwl var/db var/hl7
