@@ -1,10 +1,12 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.1'
-
+#gem 'rails', '4.2.1'
+#gem 'rails', github: 'rails/rails', branch: '4-2-stable'
+gem 'rails', git: 'https://github.com/rails/rails.git', branch: '4-2-stable'
 # ...and for deploying standalone
-gem 'sqlite3', platform: 'ruby'
+#gem 'sqlite3', platform: 'ruby'
+gem 'sqlite3', '~> 1.3.6', '< 1.4'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
