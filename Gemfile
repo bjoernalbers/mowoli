@@ -8,6 +8,9 @@ gem 'rails', git: 'https://github.com/rails/rails.git', branch: '4-2-stable'
 #gem 'sqlite3', platform: 'ruby'
 gem 'sqlite3', '~> 1.3.6', '< 1.4'
 
+# gem "rack"
+gem "json", ">= 2.3.0"
+# gem "rdoc", ">= 6.3.1"
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -26,7 +29,8 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', '~> 0.4.0', group: :doc
+#gem 'sdoc', '~> 0.4.0', group: :doc
+#gem 'sdoc', '~> 2.3.1', group: :doc
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

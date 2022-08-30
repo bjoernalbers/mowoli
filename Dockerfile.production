@@ -4,7 +4,8 @@ RUN apt-get update \
   && rm -rf /var/lib/apt/lists/*
 WORKDIR /opt/mowoli
 COPY Gemfile Gemfile.lock ./
-RUN bundle install 
+RUN gem install bundler:2.0.0.pre.3
+RUN bundle install
 # --deployment --without development test
 COPY . .
 RUN mkdir -p var/mwl var/db var/hl7
