@@ -11,12 +11,27 @@ gem 'sqlite3', '~> 1.3.6', '< 1.4'
 # gem "rack"
 gem "json", ">= 2.3.0"
 # gem "rdoc", ">= 6.3.1"
+
+group :assets do
+  gem 'therubyracer'
+  gem 'sass-rails', '~> 5.0'
+  gem 'coffee-rails', '~> 4.1.0'
+  gem 'uglifier', '>= 1.3.0'
+end
+
+
+# gem "rack"
+gem "json", ">= 2.3.0"
+# gem "rdoc", ">= 6.3.1"
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+
+
+
+#gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
+#gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.1.0'
+# gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
@@ -47,6 +62,8 @@ group :development, :test do
   gem 'timecop', '~> 0.7'
   gem 'byebug'
 end
+
+
 
 gem 'responders', '~> 2.0'
 
