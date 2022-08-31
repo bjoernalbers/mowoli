@@ -1,6 +1,7 @@
 module API
   module V1
     class OrdersController < BaseController
+      before_action :authenticate_request
       def show
         if @order = Order.find_by(id: params[:id])
           # render show template
@@ -39,6 +40,15 @@ module API
       end
 
       private
+      def authenticate_request
+        @current_key = request.headers["token"]
+        @secret =Rails.application.secrets.secret_key_base
+        # @current_key = AuthorizeApiRequest.call(request.headers).result
+        if @current_key !=@secret
+        render json: { error: 'Not Authorized' }, status: 401
+        end
+        # render json: { error: 'Not Authorized ' }, status: 401 unless @current_user
+      end
 
       def order_params
         p = params.require(:order).

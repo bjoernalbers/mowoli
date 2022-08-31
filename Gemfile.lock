@@ -185,9 +185,6 @@ GEM
     sassc (2.4.0-x64-mingw32)
       ffi (~> 1.9)
 
-    sdoc (0.4.2)
-      json (~> 1.7, >= 1.7.7)
-      rdoc (~> 4.0)
     sprockets (3.7.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
