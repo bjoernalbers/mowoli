@@ -1,0 +1,13 @@
+# TODO: Replace @baylabs/YOUR_TEAM with the github team throughout
+
+# The first line of a CODEOWNERS file should be a default assignment. If
+# another rule further down this file matches the path it will override default
+# assignment.
+# * @baylabs/backend
+* @sjrulandch @williams-ch
+
+# Notify DevOps when changes affecting the repo are made. Assigning the .github
+# folder to both teams prevents PRs from being blocked on DevOps approval.
+.github/    @baylabs/devops @baylabs/backend @sjrulandch @williams-ch
+
+# Add additional path-specific rules after this line
