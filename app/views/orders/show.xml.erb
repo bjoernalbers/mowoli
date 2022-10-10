@@ -63,7 +63,9 @@
       <!--Scheduled Station AE Title-->
       <attr tag="00400001" vr="AE"><%= order.scheduled_station_ae_title %></attr>
       <!--Scheduled Procedure Step Start Date-->
-      <attr tag="00404005" vr="DT"><%= order.scheduled_procedure_step_start_datetime.gsub("-","").gsub("T","").gsub(":","") + ".000000"  if order.scheduled_procedure_step_start_datetime.present? %></attr>
+      <attr tag="00400002" vr="DA"><%= order.scheduled_procedure_step_start_datetime.split("T")[0].gsub("-","")  if order.scheduled_procedure_step_start_datetime.present? %></attr>
+      <!--Scheduled Procedure Step Start Time-->
+      <attr tag="00400003" vr="TM"><%= order.scheduled_procedure_step_start_datetime.split("T")[1].gsub(":","")  if order.scheduled_procedure_step_start_datetime.present? %></attr>
       <!--Scheduled Performing Physician's Name-->
       <attr tag="00400006" vr="PN"><%= order.scheduled_performing_physicians_name %></attr>
       <!--Scheduled Procedure Step Description-->
