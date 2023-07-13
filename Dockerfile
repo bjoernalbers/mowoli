@@ -1,6 +1,9 @@
 FROM ruby:2.0.0-p648
+RUN echo "deb http://archive.debian.org/debian/ jessie main" > /etc/apt/sources.list
+RUN echo "Acquire::Check-Valid-Until false;" > /etc/apt/apt.conf.d/99no-check-valid-until
+RUN echo 'Acquire::Check-Date "false";' >> /etc/apt/apt.conf
 RUN apt-get update \
-  && apt-get -y --no-install-recommends install nodejs \
+  && apt-get -y --allow-unauthenticated --no-install-recommends install nodejs \
   && rm -rf /var/lib/apt/lists/*
 WORKDIR /opt/mowoli
 COPY Gemfile Gemfile.lock ./
